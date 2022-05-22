@@ -5,16 +5,16 @@ import BusinessSummary from "../../components/Home/BusinessSummary";
 import Conference from "../../components/Home/Conference";
 import Products from "../../components/Home/Products/Products";
 import Navbar from "../../components/Navbar";
+import Reviews from "../../components/Home/Reviews/Reviews";
 
 const Home = () => {
   return (
     <div>
-      <Navbar />
       <Banner />
       <BusinessSummary />
       <Products />
       <Conference />
-      <Footer />
+      <Reviews />
     </div>
   );
 };

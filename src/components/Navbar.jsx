@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../assets/images/logo.png";
+import { AiOutlineUser as UserIcon } from "react-icons/ai";
 import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
@@ -34,10 +35,10 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <a className="flex cursor-pointer normal-case text-xl">
+          <Link to="/" className="flex cursor-pointer normal-case text-xl">
             <img width={"32px"} src={logo} alt="logo" />
             <span>Thunderbolt</span>
-          </a>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">
@@ -49,23 +50,22 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <button className="btn btn-ghost btn-circle">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+          <button className="btn btn-ghost btn-circle dropdown dropdown-end">
+            <UserIcon className="text-2xl" />
+            <label tabindex="0" class=""></label>
+            <ul
+              tabindex="0"
+              class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
+              <li>
+                <a>Sign Out</a>
+              </li>
+              <li>
+                <Link to="my-profile">My Profile</Link>
+              </li>
+            </ul>
           </button>
-          <button className="btn btn-ghost btn-circle">
+          {/* <button className="btn btn-ghost btn-circle">
             <div className="indicator">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +83,7 @@ const Navbar = () => {
               </svg>
               <span className="badge badge-xs badge-primary indicator-item"></span>
             </div>
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
