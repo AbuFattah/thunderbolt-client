@@ -8,7 +8,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 const Navbar = () => {
   const [user] = useAuthState(auth);
   return (
-    <div className="shadow">
+    <div className="shadow relative z-50">
       <div className="container mx-auto max-w-[1200px]">
         <div className="navbar ">
           <div className="navbar-start">
@@ -34,6 +34,7 @@ const Navbar = () => {
                 className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
               >
                 <li>
+                  <Link to="/dashboard">Dashboard</Link>
                   <Link to="/my-portfolio">My Portfolio</Link>
                   <Link to="/blogs">Blogs</Link>
                   {/* <Link to="/my-profile">My Profile</Link> */}
@@ -48,6 +49,7 @@ const Navbar = () => {
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal p-0">
               <li>
+                <Link to="/dashboard">Dashboard</Link>
                 <Link to="/my-portfolio">My Portfolio</Link>
                 <Link to="/blogs">Blogs</Link>
                 {/* <Link to="/my-profile">My Profile</Link> */}
@@ -63,17 +65,19 @@ const Navbar = () => {
                 class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
               >
                 {user ? (
-                  <li>
-                    <a onClick={() => signOut(auth)}>Sign Out</a>
-                  </li>
+                  <>
+                    <li>
+                      <Link to="/my-profile">{user.displayName}</Link>
+                    </li>
+                    <li>
+                      <a onClick={() => signOut(auth)}>Sign Out</a>
+                    </li>
+                  </>
                 ) : (
                   <li>
                     <Link to="signin">Sign In</Link>
                   </li>
                 )}
-                <li>
-                  <Link to="my-profile">My Profile</Link>
-                </li>
               </ul>
             </button>
             {/* <button className="btn btn-ghost btn-circle">

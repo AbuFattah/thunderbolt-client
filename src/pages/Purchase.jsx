@@ -4,6 +4,7 @@ import { auth } from "../firebase.config";
 import { useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { toast } from "react-toastify";
 const Purchase = () => {
   const { id } = useParams();
   const [user] = useAuthState(auth);
@@ -33,8 +34,21 @@ const Purchase = () => {
         .max(quantity, `Cannot order more than ${quantity}`)
         .required("Quantity is required"),
     }),
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values, { resetForm }) => {
+      const result = await fetch(`http://localhost:5000/orders/${id}`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ ...values, email: user.email }),
+      }).then((res) => res.json());
+      console.log(result.success);
+      if (result.success) {
+        toast.success("Order has been placed, please pay to proceed");
+      } else {
+        toast.error(result.message);
+      }
+      resetForm();
     },
   });
 
