@@ -35,7 +35,7 @@ const Navbar = () => {
               >
                 <li>
                   <Link to="/dashboard">Dashboard</Link>
-                  <Link to="/my-portfolio">My Portfolio</Link>
+                  <Link to="/dashboard">My Portfolio</Link>
                   <Link to="/blogs">Blogs</Link>
                   {/* <Link to="/my-profile">My Profile</Link> */}
                 </li>
@@ -50,7 +50,7 @@ const Navbar = () => {
             <ul className="menu menu-horizontal p-0">
               <li>
                 <Link to="/dashboard">Dashboard</Link>
-                <Link to="/my-portfolio">My Portfolio</Link>
+                <Link to="/dashboard">My Portfolio</Link>
                 <Link to="/blogs">Blogs</Link>
                 {/* <Link to="/my-profile">My Profile</Link> */}
               </li>
@@ -67,7 +67,7 @@ const Navbar = () => {
                 {user ? (
                   <>
                     <li>
-                      <Link to="/my-profile">{user.displayName}</Link>
+                      <Link to="/dashboard">{user.displayName}</Link>
                     </li>
                     <li>
                       <a onClick={() => signOut(auth)}>Sign Out</a>

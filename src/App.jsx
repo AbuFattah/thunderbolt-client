@@ -9,6 +9,8 @@ import SignUp from "./pages/SignIn/SignUp";
 import RequireAuth from "./components/Login/RequireAuth";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import MyOrders from "./pages/Dashboard/MyOrders/MyOrders";
+import NotFound from "./pages/NotFound";
+import MyProfile from "./pages/Dashboard/MyProfile";
 function App() {
   return (
     <div>
@@ -26,7 +28,7 @@ function App() {
           }
         >
           <Route path="my-orders" element={<MyOrders />}></Route>
-          <Route path="my-profile" element={<p>hello</p>}></Route>
+          <Route index element={<MyProfile />}></Route>
           <Route path="add-review" element={<p>hello</p>}></Route>
         </Route>
         <Route
@@ -37,6 +39,7 @@ function App() {
             </RequireAuth>
           }
         ></Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
       <ToastContainer />
