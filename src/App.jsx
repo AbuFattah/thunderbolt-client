@@ -8,7 +8,7 @@ import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignIn/SignUp";
 import RequireAuth from "./components/Login/RequireAuth";
 import Dashboard from "./pages/Dashboard/Dashboard";
-import MyOrders from "./pages/Dashboard/MyOrders";
+import MyOrders from "./pages/Dashboard/MyOrders/MyOrders";
 function App() {
   return (
     <div>

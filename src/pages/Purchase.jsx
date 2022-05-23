@@ -10,13 +10,14 @@ const Purchase = () => {
   const [user] = useAuthState(auth);
   const [product, setProduct] = useState({});
   const [error, setError] = useState(null);
+  const [refetch, setRefetch] = useState(false);
   // const [btnDisabled, setBtnDisabled] = useState(true);
   const { img, minOrder, name, price, details, quantity } = product;
   useEffect(() => {
     fetch(`http://localhost:5000/products/${id}`)
       .then((response) => response.json())
       .then((data) => setProduct(data));
-  }, []);
+  }, [refetch]);
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
@@ -40,7 +41,13 @@ const Purchase = () => {
         headers: {
           "content-type": "application/json",
         },
-        body: JSON.stringify({ ...values, email: user.email }),
+        body: JSON.stringify({
+          ...values,
+          email: user.email,
+          img,
+          name,
+          price,
+        }),
       }).then((res) => res.json());
       console.log(result.success);
       if (result.success) {
@@ -48,6 +55,7 @@ const Purchase = () => {
       } else {
         toast.error(result.message);
       }
+      setRefetch(!refetch);
       resetForm();
     },
   });
