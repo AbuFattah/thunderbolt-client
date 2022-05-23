@@ -9,6 +9,7 @@ const Purchase = () => {
   const [user] = useAuthState(auth);
   const [product, setProduct] = useState({});
   const [error, setError] = useState(null);
+  // const [btnDisabled, setBtnDisabled] = useState(true);
   const { img, minOrder, name, price, details, quantity } = product;
   useEffect(() => {
     fetch(`http://localhost:5000/products/${id}`)
@@ -24,7 +25,9 @@ const Purchase = () => {
     },
     validationSchema: Yup.object({
       address: Yup.string().required("address is required"),
-      phone: Yup.string().required("phone is required"),
+      phone: Yup.number()
+        .typeError("Must be a number")
+        .required("phone is required"),
       orderQuantity: Yup.number()
         .min(minOrder, `Cannot order less than ${minOrder}`)
         .max(quantity, `Cannot order more than ${quantity}`)
@@ -34,6 +37,19 @@ const Purchase = () => {
       console.log(values);
     },
   });
+
+  const { address, phone, orderQuantity } = formik.values;
+
+  let btnDisabled = true;
+
+  if (
+    address &&
+    phone &&
+    orderQuantity &&
+    Object.entries(formik.errors).length === 0
+  ) {
+    btnDisabled = false;
+  }
 
   return (
     <div className="container mx-auto max-w-[1200px] p-5">
@@ -53,7 +69,7 @@ const Purchase = () => {
               <li key={Math.random().toString()}>{detail}</li>
             ))}
           </ul>
-          <div className="flex gap-4 my-5">
+          <div className="flex flex-wrap gap-4 my-5">
             <div className="shadow p-2 px-6">
               <p className="font-semibold">Price</p>
               <p className="text-secondary text-center">${price}</p>
@@ -129,6 +145,8 @@ const Purchase = () => {
               </label>
               <input
                 name="orderQuantity"
+                min={minOrder}
+                max={quantity}
                 required
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -151,6 +169,7 @@ const Purchase = () => {
             <button
               className="btn btn-primary my-3 w-full sm:w-32"
               type="submit"
+              disabled={btnDisabled}
             >
               Order
             </button>
