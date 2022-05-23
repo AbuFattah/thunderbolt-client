@@ -11,7 +11,7 @@ import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { auth } from "../../firebase.config";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useUpdateProfile } from "react-firebase-hooks/auth";
-import OAuth from "../../components/OAuth";
+import OAuth from "../../components/Login/OAuth";
 // import OAuth from "../components/OAuth";
 // import Loading from "../components/Loading";
 
@@ -154,9 +154,16 @@ const SignUp = () => {
         <OAuth text={"Sign Up With Google"} />
         <p className="my-4 text-center">
           Already have an account?{" "}
-          <Link className="link text-blue-500 mt-4" to="/signin">
+          <button
+            onClick={navigate("/signin", {
+              replace: true,
+              state: location?.state,
+            })}
+            className="link text-blue-500 mt-4"
+            to="/signin"
+          >
             Sign In
-          </Link>
+          </button>
         </p>
       </form>
     </div>

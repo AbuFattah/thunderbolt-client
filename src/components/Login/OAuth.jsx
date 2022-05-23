@@ -1,10 +1,10 @@
 import { toast } from "react-toastify";
-import loadingIcon from "../assets/svg/loadingIcon.svg";
+import loadingIcon from "../../assets/svg/loadingIcon.svg";
 import React from "react";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { FcGoogle as GoogleIcon } from "react-icons/fc";
 import { Navigate, useNavigate } from "react-router-dom";
-import { auth } from "../firebase.config";
+import { auth } from "../../firebase.config";
 
 const OAuth = ({ text }) => {
   const navigate = useNavigate();

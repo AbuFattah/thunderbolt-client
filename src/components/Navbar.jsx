@@ -1,8 +1,12 @@
 import React from "react";
 import logo from "../assets/images/logo.png";
+import { signOut } from "firebase/auth";
 import { AiOutlineUser as UserIcon } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { auth } from "../firebase.config";
+import { useAuthState } from "react-firebase-hooks/auth";
 const Navbar = () => {
+  const [user] = useAuthState(auth);
   return (
     <div className="shadow">
       <div className="container mx-auto max-w-[1200px]">
@@ -58,9 +62,15 @@ const Navbar = () => {
                 tabindex="0"
                 class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
               >
-                <li>
-                  <a>Sign Out</a>
-                </li>
+                {user ? (
+                  <li>
+                    <a onClick={() => signOut(auth)}>Sign Out</a>
+                  </li>
+                ) : (
+                  <li>
+                    <Link to="signin">Sign In</Link>
+                  </li>
+                )}
                 <li>
                   <Link to="my-profile">My Profile</Link>
                 </li>

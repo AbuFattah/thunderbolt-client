@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const Product = ({ product }) => {
-  const { name, details, img: image, price, quantity, minOrder } = product;
+  const { name, details, img: image, price, quantity, minOrder, _id } = product;
   const navigate = useNavigate();
   return (
     <div className="card compact w-[300px] bg-base-100 shadow-xl m-10">
@@ -28,7 +28,7 @@ const Product = ({ product }) => {
 
         <div className="card-actions justify-end">
           <button
-            onClick={navigate.bind(null, `/checkout/${name}`)}
+            onClick={navigate.bind(null, `/purchase/${_id}`)}
             className="btn btn-primary w-full mt-5"
           >
             Buy Now
