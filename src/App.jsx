@@ -11,6 +11,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import MyOrders from "./pages/Dashboard/MyOrders/MyOrders";
 import NotFound from "./pages/NotFound";
 import MyProfile from "./pages/Dashboard/MyProfile";
+import AddReview from "./pages/Dashboard/AddReview";
 function App() {
   return (
     <div>
@@ -29,7 +30,7 @@ function App() {
         >
           <Route path="my-orders" element={<MyOrders />}></Route>
           <Route index element={<MyProfile />}></Route>
-          <Route path="add-review" element={<p>hello</p>}></Route>
+          <Route path="add-review" element={<AddReview />}></Route>
         </Route>
         <Route
           path="/purchase/:id"

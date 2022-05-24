@@ -17,15 +17,17 @@ const MyOrdersRow = ({ order, index, setOrderToDelete }) => {
             <Link to="/payment" className="btn btn-xs btn-success mx-1">
               pay
             </Link>
-            <label
-              onClick={() => {
-                setOrderToDelete(order);
-              }}
-              for="modal-confirm"
-              class="btn btn-xs modal-button btn-error"
-            >
-              Cancel
-            </label>
+            {!paid && (
+              <label
+                onClick={() => {
+                  setOrderToDelete(order);
+                }}
+                for="modal-confirm"
+                class="btn btn-xs modal-button btn-error"
+              >
+                Cancel
+              </label>
+            )}
             {/* <button className="btn btn-xs btn-error mx-1">Cancel Order</button> */}
           </>
         )}

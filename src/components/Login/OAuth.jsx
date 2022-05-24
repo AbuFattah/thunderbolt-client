@@ -5,6 +5,7 @@ import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { FcGoogle as GoogleIcon } from "react-icons/fc";
 import { Navigate, useNavigate } from "react-router-dom";
 import { auth } from "../../firebase.config";
+import useToken from "../hooks/useToken";
 
 const OAuth = ({ text }) => {
   const navigate = useNavigate();

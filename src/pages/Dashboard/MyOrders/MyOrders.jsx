@@ -13,6 +13,8 @@ const MyOrders = () => {
   const [orderToDelete, setOrderToDelete] = useState(null);
   // delete order from collection
   const handleDeleteOrder = (orderId) => {
+    const order = orders.find((order) => order._id === orderId);
+    if (order.paid) return;
     fetch(`http://localhost:5000/orders/${orderId}`, {
       method: "DELETE",
     })

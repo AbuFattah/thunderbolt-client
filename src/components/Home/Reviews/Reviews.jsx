@@ -29,9 +29,9 @@ const Reviews = () => {
             <Review key={review.id} review={review}></Review>
           ))}
         </div>
-        <button className="p-4 shadow my-4 text-primary">
+        {/* <button className="p-4 shadow my-4 text-primary">
           See all reviews
-        </button>
+        </button> */}
       </div>
     </motion.div>
   );

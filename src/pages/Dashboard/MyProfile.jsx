@@ -65,7 +65,7 @@ const MyProfile = () => {
         <div>
           <div className="text-sm font-semibold">Name:</div>
           <input
-            className="card-title border-b p-1 my-1 focus:outline-none"
+            className="card-title border-b-2 p-1 my-1 focus:outline-none"
             name="name"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -80,14 +80,14 @@ const MyProfile = () => {
             disabled
             type="email"
             value={formik.values.email}
-            className="border-b p-1"
+            className="border-b-2 p-1 disabled:text-slate-500"
           ></input>
         </div>
         <div>
           <div className="text-sm font-semibold">Adress:</div>
           <input
             name="address"
-            className="text-slate-700 border-b p-1 my-1 focus:outline-none"
+            className="text-slate-700 border-b-2 p-1 my-1 focus:outline-none"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.address}
@@ -98,7 +98,7 @@ const MyProfile = () => {
         <div>
           <div className="text-sm font-semibold">Phone:</div>
           <input
-            className="text-slate-700 border-b p-1 my-1 focus:outline-none "
+            className="text-slate-700 border-b-2 p-1 my-1 focus:outline-none "
             disabled={!editable}
             type="number"
             name="phone"
