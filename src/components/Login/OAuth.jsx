@@ -9,7 +9,7 @@ import { auth } from "../../firebase.config";
 const OAuth = ({ text }) => {
   const navigate = useNavigate();
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
-
+  const token = useToken(user?.user);
   const handleSignInWithGoogle = () => {
     signInWithGoogle();
   };

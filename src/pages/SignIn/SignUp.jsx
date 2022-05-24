@@ -24,6 +24,7 @@ const SignUp = () => {
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+  const token = useToken(user?.user);
 
   // FORMIK
   const formik = useFormik({
@@ -155,10 +156,12 @@ const SignUp = () => {
         <p className="my-4 text-center">
           Already have an account?{" "}
           <button
-            onClick={navigate("/signin", {
-              replace: true,
-              state: location?.state,
-            })}
+            onClick={() =>
+              navigate("/signin", {
+                replace: true,
+                state: location?.state,
+              })
+            }
             className="link text-blue-500 mt-4"
             to="/signin"
           >

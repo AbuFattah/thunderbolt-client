@@ -44,6 +44,7 @@ const MyProfile = () => {
         }
       ).then((res) => res.json());
       toast.success("updated Profile");
+      setEditable(false);
       // await fetch('http://localhost:5000/updateProfile')
     },
   });
@@ -64,7 +65,7 @@ const MyProfile = () => {
         <div>
           <div className="text-sm font-semibold">Name:</div>
           <input
-            className="card-title border p-1 my-1 disabled:border-0"
+            className="card-title border-b p-1 my-1 focus:outline-none"
             name="name"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -75,13 +76,18 @@ const MyProfile = () => {
         </div>
         <div>
           <div className="text-sm font-semibold">Email:</div>
-          <div>{formik.values.email}</div>
+          <input
+            disabled
+            type="email"
+            value={formik.values.email}
+            className="border-b p-1"
+          ></input>
         </div>
         <div>
           <div className="text-sm font-semibold">Adress:</div>
           <input
             name="address"
-            className="text-slate-700 border p-1 my-1 disabled:border-0"
+            className="text-slate-700 border-b p-1 my-1 focus:outline-none"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.address}
@@ -92,7 +98,7 @@ const MyProfile = () => {
         <div>
           <div className="text-sm font-semibold">Phone:</div>
           <input
-            className="text-slate-700 border p-1 my-1 disabled:border-0 "
+            className="text-slate-700 border-b p-1 my-1 focus:outline-none "
             disabled={!editable}
             type="number"
             name="phone"

@@ -17,9 +17,15 @@ const Dashboard = () => {
           <Outlet />
         </p>
       </div>
-      <div class="drawer-side">
+      <div
+        class="drawer-side"
+        style={{
+          position: "relative",
+          zIndex: 1,
+        }}
+      >
         <label for="my-drawer-2" class="drawer-overlay"></label>
-        <ul class="menu p-4 overflow-y-auto w-80 text-black bg-gray-100 ">
+        <ul class=" menu p-4 overflow-y-auto w-80 text-black bg-gray-100 ">
           {/* <!-- Sidebar content here --> */}
           <li>
             <Link to="my-orders">My orders</Link>

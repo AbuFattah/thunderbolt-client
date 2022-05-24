@@ -11,6 +11,7 @@ import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { auth } from "../../firebase.config";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import OAuth from "../../components/Login/OAuth";
+import useToken from "../../components/hooks/useToken";
 // import OAuth from "../components/OAuth";
 // import Loading from "../components/Loading";
 
@@ -22,7 +23,7 @@ const SignIn = () => {
   let path = location.state?.from || "/";
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth, { sendEmailVerification: true });
-
+  const token = useToken(user?.user);
   // FORMIK
   const formik = useFormik({
     initialValues: {
