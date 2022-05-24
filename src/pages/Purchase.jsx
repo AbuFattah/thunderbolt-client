@@ -44,6 +44,8 @@ const Purchase = () => {
         body: JSON.stringify({
           ...values,
           email: user.email,
+          userName: user.displayName,
+          paid: false,
           img,
           name,
           price,

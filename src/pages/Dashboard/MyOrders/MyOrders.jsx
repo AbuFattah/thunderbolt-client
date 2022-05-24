@@ -27,7 +27,7 @@ const MyOrders = () => {
   };
   useEffect(() => {
     if (!user) return;
-    fetch(`http://localhost:5000/orders?email=${user?.email}`, {
+    fetch(`http://localhost:5000/orders/${user?.email}`, {
       method: "GET",
     })
       .then((res) => res.json())
