@@ -4,7 +4,7 @@ import { auth } from "../firebase.config";
 
 export default function useUser() {
   const [firebaseUser] = useAuthState(auth);
-  const [userProfile, setUserProfile] = useState({});
+  const [userProfile, setUserProfile] = useState(null);
   useEffect(() => {
     fetch(`http://localhost:5000/userProfile/${firebaseUser.email}`)
       .then((res) => res.json())

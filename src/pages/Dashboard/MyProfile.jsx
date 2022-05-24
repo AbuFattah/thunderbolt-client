@@ -12,21 +12,14 @@ const MyProfile = () => {
   const [editable, setEditable] = useState(false);
   const [formData, setFormData] = useState();
   const [profile] = useUserProfile();
-  // console.log(user?.displayName);
-  useEffect(() => {
-    if (!firebaseUser) return;
-    fetch(`http://localhost:5000/userProfile/${firebaseUser.email}`)
-      .then((res) => res.json())
-      .then((data) => setProfile(data));
-  }, [firebaseUser]);
 
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
       address: profile?.address,
       phone: profile?.phone,
-      name: firebaseUser?.displayName,
-      email: firebaseUser?.email,
+      name: profile?.displayName,
+      email: profile?.email,
       education: profile?.education,
       linkedin: profile?.linkedin,
     },

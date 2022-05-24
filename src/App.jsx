@@ -12,6 +12,9 @@ import MyOrders from "./pages/Dashboard/MyOrders/MyOrders";
 import NotFound from "./pages/NotFound";
 import MyProfile from "./pages/Dashboard/MyProfile";
 import AddReview from "./pages/Dashboard/AddReview";
+import ManageOrders from "./pages/Dashboard/Admin/ManageOrders";
+import ManageProducts from "./pages/Dashboard/Admin/ManageProducts";
+import AddProduct from "./pages/Dashboard/Admin/AddProduct";
 function App() {
   return (
     <div>
@@ -28,9 +31,12 @@ function App() {
             </RequireAuth>
           }
         >
-          <Route path="my-orders" element={<MyOrders />}></Route>
           <Route index element={<MyProfile />}></Route>
+          <Route path="my-orders" element={<MyOrders />}></Route>
           <Route path="add-review" element={<AddReview />}></Route>
+          <Route path="manage-orders" element={<ManageOrders />}></Route>
+          <Route path="manage-products" element={<ManageProducts />}></Route>
+          <Route path="add-product" element={<AddProduct />}></Route>
         </Route>
         <Route
           path="/purchase/:id"
