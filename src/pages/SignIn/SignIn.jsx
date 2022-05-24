@@ -11,7 +11,7 @@ import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { auth } from "../../firebase.config";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import OAuth from "../../components/Login/OAuth";
-import useToken from "../../components/hooks/useToken";
+import useToken from "../../hooks/useToken";
 // import OAuth from "../components/OAuth";
 // import Loading from "../components/Loading";
 

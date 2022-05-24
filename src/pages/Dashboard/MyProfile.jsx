@@ -4,13 +4,14 @@ import { auth } from "../../firebase.config";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
+import useUserProfile from "../../hooks/useUserProfile";
 const MyProfile = () => {
   const [updateProfile, updating, error] = useUpdateProfile(auth);
   // const { name, email } = profile;
   const [firebaseUser] = useAuthState(auth);
   const [editable, setEditable] = useState(false);
   const [formData, setFormData] = useState();
-  const [profile, setProfile] = useState(null);
+  const [profile] = useUserProfile();
   // console.log(user?.displayName);
   useEffect(() => {
     if (!firebaseUser) return;
@@ -26,6 +27,8 @@ const MyProfile = () => {
       phone: profile?.phone,
       name: firebaseUser?.displayName,
       email: firebaseUser?.email,
+      education: profile?.education,
+      linkedin: profile?.linkedin,
     },
     validationSchema: Yup.object({
       address: Yup.string(),
@@ -65,7 +68,7 @@ const MyProfile = () => {
         <div>
           <div className="text-sm font-semibold">Name:</div>
           <input
-            className="card-title border-b-2 p-1 my-1 focus:outline-none"
+            className="card-title border-b-2 w-fit p-1 my-1 focus:outline-none"
             name="name"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -80,14 +83,14 @@ const MyProfile = () => {
             disabled
             type="email"
             value={formik.values.email}
-            className="border-b-2 p-1 disabled:text-slate-500"
+            className="border-b-2 p-1 disabled:text-slate-500 w-auto"
           ></input>
         </div>
         <div>
           <div className="text-sm font-semibold">Adress:</div>
           <input
             name="address"
-            className="text-slate-700 border-b-2 p-1 my-1 focus:outline-none"
+            className="text-slate-700 border-b-2 p-1 my-1 focus:outline-none w-fit"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.address}
@@ -105,6 +108,30 @@ const MyProfile = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.phone}
+          ></input>
+        </div>
+        <div>
+          <div className="text-sm font-semibold">Education:</div>
+          <input
+            className="text-slate-700 border-b-2 p-1 my-1 focus:outline-none "
+            disabled={!editable}
+            type="text"
+            name="education"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.education}
+          ></input>
+        </div>
+        <div>
+          <div className="text-sm font-semibold">Linkedin Profile:</div>
+          <input
+            className="text-slate-700 border-b-2 p-1 my-1 focus:outline-none "
+            disabled={!editable}
+            type="text"
+            name="linkedin"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.linkedin}
           ></input>
         </div>
         <button className="btn btn-secondary btn-sm">Update Profile</button>

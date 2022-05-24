@@ -2,7 +2,7 @@ import React from "react";
 import { toast } from "react-toastify";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import useUserProfile from "../../components/hooks/useUserProfile";
+import useUserProfile from "../../hooks/useUserProfile";
 const AddReview = () => {
   const [userProfile] = useUserProfile();
   const formik = useFormik({
