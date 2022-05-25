@@ -18,7 +18,7 @@ const MyProfile = () => {
     initialValues: {
       address: profile?.address,
       phone: profile?.phone,
-      name: profile?.displayName,
+      name: profile?.name,
       email: profile?.email,
       education: profile?.education,
       linkedin: profile?.linkedin,

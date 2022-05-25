@@ -8,9 +8,9 @@ const ManageProducts = () => {
   const [refetch, setRefetch] = useState(false);
   const [product, setProduct] = useState(null);
   const handleDeleteProduct = async (productId) => {
-    const data = await fetch(
-      `http://localhost:5000/products/${productId}`
-    ).then((res) => res.json());
+    const data = await fetch(`http://localhost:5000/products/${productId}`, {
+      method: "DELETE",
+    }).then((res) => res.json());
     setRefetch(!refetch);
     setProduct(null);
     toast.success("Product deleted successfully");
