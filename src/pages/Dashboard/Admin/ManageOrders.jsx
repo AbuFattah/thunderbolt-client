@@ -78,9 +78,13 @@ const ManageOrders = () => {
       </div>
       {orderToDelete && (
         <ModalConfirm
-          onCancelOrder={handleDeleteOrder}
-          orderToDelete={orderToDelete}
-        />
+          actionName={"Cancel Order"}
+          onDelete={handleDeleteOrder}
+          itemId={orderToDelete._id}
+        >
+          <p> You want to Cancel order for</p>
+          <span className="font-semibold">{orderToDelete.name}</span> ?
+        </ModalConfirm>
       )}
     </>
   );
