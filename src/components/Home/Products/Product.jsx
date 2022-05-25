@@ -16,9 +16,14 @@ const Product = ({ product }) => {
       <div className="card-body compact">
         <h2 className="card-title">{name}</h2>
         <ul className="text-slate-500 list-disc px-3">
-          {details.map((detail) => (
-            <li key={Math.random().toString()}>{detail}</li>
-          ))}
+          {Array.isArray(details) ? (
+            details.map((detail) => (
+              <li key={Math.random().toString()}>{detail}</li>
+            ))
+          ) : (
+            <p>{details}</p>
+          )}
+          {}
         </ul>
         <p className="  font-semibold">Quantity: {quantity}</p>
         <p className="  font-semibold">Minimum Order: {minOrder}</p>

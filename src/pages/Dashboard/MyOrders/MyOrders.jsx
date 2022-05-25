@@ -17,6 +17,9 @@ const MyOrders = () => {
     if (order.paid) return;
     fetch(`http://localhost:5000/orders/${orderId}`, {
       method: "DELETE",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -29,6 +32,9 @@ const MyOrders = () => {
     if (!user) return;
     fetch(`http://localhost:5000/orders/${user?.email}`, {
       method: "GET",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {

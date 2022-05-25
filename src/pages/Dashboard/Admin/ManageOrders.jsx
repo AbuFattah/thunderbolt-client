@@ -19,10 +19,10 @@ const ManageOrders = () => {
       `http://localhost:5000/orders/${orderId}`
     );
 
-    if (response.statusText !== "OK") {
-      toast.error("Product deleted failed");
-      return;
-    }
+    // if (response.statusText !== "OK") {
+    //   toast.error("Product deleted failed");
+    //   return;
+    // }
     setOrderToDelete(null);
     setRefetch(!refetch);
     toast.success("order deleted successfully");
@@ -32,7 +32,7 @@ const ManageOrders = () => {
     const res = await axiosFetch.patch(
       `http://localhost:5000/orders/${orderId}`
     );
-    if (response.statusText !== "OK") {
+    if (res.statusText !== "OK") {
       toast.error("Product deleted failed");
       return;
     }
@@ -41,9 +41,9 @@ const ManageOrders = () => {
   };
 
   useEffect(() => {
-    axiosFetch(`http://localhost:5000/orders`).then((res) =>
-      setOrders(res.data)
-    );
+    axiosFetch
+      .get(`http://localhost:5000/orders`)
+      .then((res) => setOrders(res.data));
   }, [refetch]);
   return (
     <>
