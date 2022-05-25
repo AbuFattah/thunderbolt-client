@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+
 import ManageOrdersRow from "./ManageOrdersRow";
 import { BsFillGearFill as GearIcon } from "react-icons/bs";
 import ModalConfirm from "../../../components/ModalConfirm";
@@ -21,12 +23,26 @@ const ManageOrders = () => {
         toast.success("order deleted successfully");
       });
   };
+  const handleShippedStatus = (orderId) => {
+    // UPDATING STATUS TO SHIPPED
+    fetch(`http://localhost:5000/orders/${orderId}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setRefetch(!refetch);
+        toast.success("Status updated");
+      });
+  };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/orders/`)
+    fetch(`http://localhost:5000/orders`)
       .then((res) => res.json())
       .then((data) => setOrders(data));
-  });
+  }, [refetch]);
   return (
     <>
       <div class="overflow-x-auto">
@@ -50,6 +66,7 @@ const ManageOrders = () => {
           <tbody>
             {orders.map((order, index) => (
               <ManageOrdersRow
+                handleShippedStatus={handleShippedStatus}
                 setOrderToDelete={setOrderToDelete}
                 key={order._id}
                 order={order}

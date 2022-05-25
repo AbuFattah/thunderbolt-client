@@ -1,21 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { BsThreeDotsVertical as ThreeDots } from "react-icons/bs";
-const ManageOrdersRow = ({ order, index, setOrderToDelete }) => {
+const ManageOrdersRow = ({
+  order,
+  index,
+  setOrderToDelete,
+  handleShippedStatus,
+}) => {
   const {
     userName,
     name: productName,
     price,
     orderQuantity,
     paid,
-    _id,
+    _id: orderId,
+    status,
   } = order;
   return (
     <tr>
       <th>{index + 1}</th>
       <td>{userName}</td>
       <td>{productName}</td>
-      <td>pending</td>
+      <td>{status ? status : " - "}</td>
       <td>${price}</td>
       <td>
         {paid ? (
@@ -28,10 +34,17 @@ const ManageOrdersRow = ({ order, index, setOrderToDelete }) => {
           </>
         )}
       </td>
-      <div class="dropdown dropdown-end">
-        <label tabindex="0" class="btn btn-xs mt-4">
-          set Shipped
-        </label>
+      <td class="flex gap-2 items-center">
+        {
+          <button
+            disabled={status === "shipped" || !paid}
+            onClick={handleShippedStatus.bind(null, orderId)}
+            tabindex="0"
+            class="btn btn-xs "
+          >
+            set Shipped
+          </button>
+        }
         {!paid && (
           <label
             onClick={() => {
@@ -43,18 +56,7 @@ const ManageOrdersRow = ({ order, index, setOrderToDelete }) => {
             Cancel
           </label>
         )}
-        <ul
-          tabindex="0"
-          class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
-        >
-          <li>
-            <a>Item 1</a>
-          </li>
-          <li>
-            <a>Item 2</a>
-          </li>
-        </ul>
-      </div>
+      </td>
     </tr>
   );
 };
