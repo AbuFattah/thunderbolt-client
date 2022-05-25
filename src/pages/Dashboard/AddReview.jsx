@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import useUserProfile from "../../hooks/useUserProfile";
+import axiosFetch from "../../vendors/axios";
 const AddReview = () => {
   const [userProfile] = useUserProfile();
   const formik = useFormik({
@@ -19,18 +20,15 @@ const AddReview = () => {
     }),
     onSubmit: async (values, { resetForm }) => {
       const { description, rating } = values;
-      await fetch("http://localhost:5000/reviews/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+      await axiosFetch
+        .post("http://localhost:5000/reviews/", {
           name: userProfile?.name,
           image:
             userProfile?.image ||
             "https://api.lorem.space/image/face?hash=3174",
           description,
           rating,
-        }),
-      })
+        })
         .then((res) => res.json())
         .then((data) => {
           toast.success("added review successfully");

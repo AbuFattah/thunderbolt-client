@@ -2,15 +2,20 @@ import React, { useEffect, useState } from "react";
 import { BsFillGearFill as GearIcon } from "react-icons/bs";
 import { toast } from "react-toastify";
 import ModalConfirm from "../../../components/ModalConfirm";
+import axiosFetch from "../../../vendors/axios";
 import ManageProductsRow from "./ManageProductsRow";
 const ManageProducts = () => {
   const [products, setProducts] = useState([]);
   const [refetch, setRefetch] = useState(false);
   const [product, setProduct] = useState(null);
   const handleDeleteProduct = async (productId) => {
-    const data = await fetch(`http://localhost:5000/products/${productId}`, {
-      method: "DELETE",
-    }).then((res) => res.json());
+    const response = await axiosFetch.delete(
+      `http://localhost:5000/products/${productId}`
+    );
+    if (response.statusText !== "OK") {
+      toast.error("Product deleted failed");
+      return;
+    }
     setRefetch(!refetch);
     setProduct(null);
     toast.success("Product deleted successfully");

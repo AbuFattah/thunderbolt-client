@@ -5,6 +5,9 @@ import { useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
+import axiosFetch from "../vendors/axios";
+// imports end
+
 const Purchase = () => {
   const { id } = useParams();
   const [user] = useAuthState(auth);
@@ -13,11 +16,13 @@ const Purchase = () => {
   const [refetch, setRefetch] = useState(false);
   // const [btnDisabled, setBtnDisabled] = useState(true);
   const { img, minOrder, name, price, details, quantity } = product;
+
   useEffect(() => {
-    fetch(`http://localhost:5000/products/${id}`)
-      .then((response) => response.json())
-      .then((data) => setProduct(data));
+    axiosFetch
+      .get(`http://localhost:5000/products/${id}`)
+      .then((response) => setProduct(response.data));
   }, [refetch]);
+
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {

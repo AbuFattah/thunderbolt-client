@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
+import axiosFetch from "../../../vendors/axios";
 const AddProduct = () => {
   const formik = useFormik({
     enableReinitialize: true,
@@ -26,11 +27,7 @@ const AddProduct = () => {
       category: Yup.string().required("Please provide a category"),
     }),
     onSubmit: async (values, { resetForm }) => {
-      await fetch("http://localhost:5000/products", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...values }),
-      });
+      await axiosFetch.post("http://localhost:5000/products", { ...values });
       resetForm();
       toast.success("Product added successfully");
     },

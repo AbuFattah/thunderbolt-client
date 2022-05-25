@@ -4,44 +4,46 @@ import { toast } from "react-toastify";
 import ManageOrdersRow from "./ManageOrdersRow";
 import { BsFillGearFill as GearIcon } from "react-icons/bs";
 import ModalConfirm from "../../../components/ModalConfirm";
+import axiosFetch from "../../../vendors/axios";
 const ManageOrders = () => {
   const [refetch, setRefetch] = useState(false);
   const [orders, setOrders] = useState([]);
   const [orderToDelete, setOrderToDelete] = useState(null);
 
   // delete order from collection
-  const handleDeleteOrder = (orderId) => {
+  const handleDeleteOrder = async (orderId) => {
     const order = orders.find((order) => order._id === orderId);
     if (order.paid) return;
-    fetch(`http://localhost:5000/orders/${orderId}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setOrderToDelete(null);
-        setRefetch(!refetch);
-        toast.success("order deleted successfully");
-      });
+
+    const response = await axiosFetch.delete(
+      `http://localhost:5000/orders/${orderId}`
+    );
+
+    if (response.statusText !== "OK") {
+      toast.error("Product deleted failed");
+      return;
+    }
+    setOrderToDelete(null);
+    setRefetch(!refetch);
+    toast.success("order deleted successfully");
   };
-  const handleShippedStatus = (orderId) => {
+  const handleShippedStatus = async (orderId) => {
     // UPDATING STATUS TO SHIPPED
-    fetch(`http://localhost:5000/orders/${orderId}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setRefetch(!refetch);
-        toast.success("Status updated");
-      });
+    const res = await axiosFetch.patch(
+      `http://localhost:5000/orders/${orderId}`
+    );
+    if (response.statusText !== "OK") {
+      toast.error("Product deleted failed");
+      return;
+    }
+    setRefetch(!refetch);
+    toast.success("Status updated");
   };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/orders`)
-      .then((res) => res.json())
-      .then((data) => setOrders(data));
+    axiosFetch(`http://localhost:5000/orders`).then((res) =>
+      setOrders(res.data)
+    );
   }, [refetch]);
   return (
     <>

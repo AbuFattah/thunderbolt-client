@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import useUserProfile from "../../hooks/useUserProfile";
+import axiosFetch from "../../vendors/axios";
 const MyProfile = () => {
   const [updateProfile, updating, error] = useUpdateProfile(auth);
   // const { name, email } = profile;
@@ -31,14 +32,12 @@ const MyProfile = () => {
       const { name, address, phone, email } = values;
       console.log(name);
       await updateProfile({ displayName: name });
-      const result = await fetch(
+      const result = await axiosFetch.put(
         `http://localhost:5000/updateProfile/${email}`,
         {
-          method: "PUT",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({ ...values }),
+          ...values,
         }
-      ).then((res) => res.json());
+      );
       toast.success("updated Profile");
       setEditable(false);
       // await fetch('http://localhost:5000/updateProfile')
