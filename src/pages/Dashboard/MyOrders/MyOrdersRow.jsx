@@ -14,7 +14,10 @@ const MyOrdersRow = ({ order, index, setOrderToDelete }) => {
           <button className="btn btn-xs btn-success">paid</button>
         ) : (
           <>
-            <Link to="/payment" className="btn btn-xs btn-success mx-1">
+            <Link
+              to={`/payment/${_id}`}
+              className="btn btn-xs btn-success mx-1"
+            >
               pay
             </Link>
             {!paid && (

@@ -17,6 +17,7 @@ import ManageProducts from "./pages/Dashboard/Admin/ManageProducts";
 import AddProduct from "./pages/Dashboard/Admin/AddProduct";
 import RequireAdmin from "./components/Admin/RequireAdmin";
 import ManageUsers from "./pages/Dashboard/Admin/ManageUsers";
+import Payment from "./pages/Payment/Payment";
 function App() {
   return (
     <div>
@@ -25,6 +26,7 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/signin" element={<SignIn />}></Route>
+        {/* DASHBOARD START */}
         <Route
           path="/dashboard"
           element={
@@ -67,6 +69,7 @@ function App() {
               </RequireAdmin>
             }
           ></Route>
+
           <Route
             path="add-product"
             element={
@@ -76,11 +79,20 @@ function App() {
             }
           ></Route>
         </Route>
+        {/* DASHBOARD END */}
         <Route
           path="/purchase/:id"
           element={
             <RequireAuth>
               <Purchase />
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="/payment/:id"
+          element={
+            <RequireAuth>
+              <Payment />
             </RequireAuth>
           }
         ></Route>
