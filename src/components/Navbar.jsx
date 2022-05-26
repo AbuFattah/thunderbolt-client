@@ -2,11 +2,12 @@ import React from "react";
 import logo from "../assets/images/logo.png";
 import { signOut } from "firebase/auth";
 import { AiOutlineUser as UserIcon } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../firebase.config";
 import { useAuthState } from "react-firebase-hooks/auth";
 const Navbar = () => {
   const [user] = useAuthState(auth);
+  const navigate = useNavigate();
   return (
     <div className="shadow relative z-50">
       <div className="container mx-auto max-w-[1200px]">
@@ -70,7 +71,14 @@ const Navbar = () => {
                       <Link to="/dashboard">{user.displayName}</Link>
                     </li>
                     <li>
-                      <a onClick={() => signOut(auth)}>Sign Out</a>
+                      <a
+                        onClick={() => {
+                          signOut(auth);
+                          navigate("/", { replace: true });
+                        }}
+                      >
+                        Sign Out
+                      </a>
                     </li>
                   </>
                 ) : (

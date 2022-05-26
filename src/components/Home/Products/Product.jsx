@@ -10,7 +10,7 @@ const Product = ({ product }) => {
         <img
           className="w-full h-[200px] object-cover"
           src={image}
-          alt="Shoes"
+          alt="Product image"
         />
       </figure>
       <div className="card-body compact">
