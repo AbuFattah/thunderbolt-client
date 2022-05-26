@@ -13,13 +13,13 @@ const AddProduct = () => {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      // name: "",
-      // details: "",
-      // quantity: "",
-      // minOrder: "",
-      // price: "",
-      // category: "",
-      // imageURL: "",
+      name: "",
+      details: "",
+      quantity: "",
+      minOrder: "",
+      price: "",
+      category: "",
+      imageURL: "",
     },
     validationSchema: Yup.object({
       name: Yup.string().required("provide name of product"),
@@ -30,11 +30,12 @@ const AddProduct = () => {
       category: Yup.string().required("Please provide a category"),
     }),
     onSubmit: async (values, { resetForm }) => {
-      const data = await axiosFetch
-        .post("http://localhost:5000/products", {
-          ...values,
-        })
-        .then((res) => res.json());
+      let { details } = values;
+      details = details.split(",");
+      const data = await axiosFetch.post("http://localhost:5000/products", {
+        ...values,
+        details,
+      });
 
       // if (!data.statusText === "success") {
       //   signOut(auth);
