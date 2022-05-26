@@ -12,7 +12,7 @@ const Products = () => {
       <h1 className="text-center text-4xl  my-16">PRODUCTS WE MANUFACTURE</h1>
       <div className="w-[40px] h-px bg-slate-500 mx-auto"></div>
       <div className="flex justify-center flex-wrap">
-        {products.map((product) => (
+        {products?.map((product) => (
           <Product key={product._id} product={product} />
         ))}
       </div>

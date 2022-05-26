@@ -26,7 +26,7 @@ const Reviews = () => {
         </h1>
         <div className="flex flex-wrap gap-5 container mx-auto justify-center items-center">
           {reviews.map((review) => (
-            <Review key={review.id} review={review}></Review>
+            <Review key={review._id} review={review}></Review>
           ))}
         </div>
         {/* <button className="p-4 shadow my-4 text-primary">

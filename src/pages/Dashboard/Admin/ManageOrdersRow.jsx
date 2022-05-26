@@ -39,7 +39,7 @@ const ManageOrdersRow = ({
           <button
             disabled={status === "shipped" || !paid}
             onClick={handleShippedStatus.bind(null, orderId)}
-            tabindex="0"
+            tabIndex="0"
             class="btn btn-xs "
           >
             set Shipped
