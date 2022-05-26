@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import Product from "./Product";
 const Products = () => {
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    fetch("https://quiet-sierra-02011.herokuapp.com/featuredProducts")
-      .then((res) => res.json())
-      .then((data) => {
-        setProducts(data);
-      });
-  }, []);
+  const { data: products } = useQuery("products", () =>
+    fetch("https://quiet-sierra-02011.herokuapp.com/featuredProducts").then(
+      (res) => res.json()
+    )
+  );
   return (
     <div className="container mx-auto max-w-[1200px]">
       <h1 className="text-center text-4xl  my-16">PRODUCTS WE MANUFACTURE</h1>
