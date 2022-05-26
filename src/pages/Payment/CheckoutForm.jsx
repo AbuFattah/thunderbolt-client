@@ -1,3 +1,4 @@
+import loadingIconBlack from "../../assets/svg/loadingIconBlack.svg";
 import {
   CardElement,
   Elements,
@@ -7,26 +8,29 @@ import {
 import { useEffect, useState } from "react";
 import axiosFetch from "../../vendors/axios";
 
-const CheckoutForm = ({ price }) => {
+const CheckoutForm = ({ order }) => {
   const [paymentError, setPaymentError] = useState("");
+  const [success, setSuccess] = useState("");
   const [clientSecret, setClientSecret] = useState("");
+  const [transactionId, setTransactionId] = useState("");
+  const [loading, setLoading] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
-
+  console.log(order);
   useEffect(() => {
+    if (!order.price) return;
     fetch(`http://localhost:5000/create-payment-intent`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
-      body: JSON.stringify({ price: 600 }),
+      body: JSON.stringify({ price: order.price }),
     })
       .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret));
-  }, [price]);
+      .then((data) => setClientSecret(data?.clientSecret || ""));
+  }, [order]);
 
-  console.log(clientSecret);
   const handleSubmit = async (event) => {
     // Block native form submission.
     event.preventDefault();
@@ -36,7 +40,6 @@ const CheckoutForm = ({ price }) => {
       // form submission until Stripe.js has loaded.
       return;
     }
-
     // Get a reference to a mounted CardElement. Elements knows how
     // to find your CardElement because there can only ever be one of
     // each type of element.
@@ -45,22 +48,47 @@ const CheckoutForm = ({ price }) => {
     if (card == null) {
       return;
     }
-
     // Use your card Element with other Stripe.js APIs
+    setLoading(true);
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card,
     });
-
     setPaymentError("");
+    setSuccess("");
     if (error) {
       console.log("[error]", error);
       setPaymentError(error.message);
+      setLoading(false);
     } else {
       console.log("[PaymentMethod]", paymentMethod);
     }
-  };
 
+    // Confirm payment through card
+    const { paymentIntent, error: intentError } =
+      await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: card,
+          billing_details: {
+            name: order.userName,
+            email: order.email,
+          },
+        },
+      });
+    setLoading(false);
+    if (intentError) {
+      setPaymentError(intentError.message);
+      return;
+    }
+
+    if (paymentIntent.id) {
+      setSuccess("Payment Successfull!");
+      setTransactionId(paymentIntent.id);
+      axiosFetch.patch(`http://localhost:5000/orders/payment/${order._id}`, {
+        transactionId: paymentIntent.id,
+      });
+    }
+  };
   return (
     <form onSubmit={handleSubmit}>
       <CardElement
@@ -82,40 +110,27 @@ const CheckoutForm = ({ price }) => {
       <button
         type="submit"
         className="btn btn-success btn-sm my-3"
-        disabled={!stripe}
+        disabled={!stripe || !clientSecret}
       >
-        Pay {price}
+        Pay ${order.price}
       </button>
-      {paymentError && <p className="text-red-500">{paymentError}</p>}
+      {!loading ? (
+        <>
+          {" "}
+          {paymentError && <p className="text-error">{paymentError}</p>}
+          {success && <p className="text-success">{success}</p>}
+          {transactionId && (
+            <p className="">
+              <span className="font-semibold">TransactionID:</span>{" "}
+              <span className="text-slate-700">{transactionId}</span>
+            </p>
+          )}
+        </>
+      ) : (
+        <img src={loadingIconBlack}></img>
+      )}
     </form>
   );
 };
-
-// const CheckoutForm = () => {
-//   const stripe = useStripe();
-//   const elements = useElements();
-
-//   const handleSubmit = async (event) => {
-//     event.preventDefault();
-
-//     if (elements == null) {
-//       return;
-//     }
-
-//     const { error, paymentMethod } = await stripe.createPaymentMethod({
-//       type: "card",
-//       card: elements.getElement(CardElement),
-//     });
-//   };
-
-//   return (
-//     <form onSubmit={handleSubmit}>
-//       <CardElement />
-//       <button type="submit" disabled={!stripe || !elements}>
-//         Pay
-//       </button>
-//     </form>
-//   );
-// };
 
 export default CheckoutForm;

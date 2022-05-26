@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const MyOrdersRow = ({ order, index, setOrderToDelete }) => {
-  const { name, price, orderQuantity, paid, _id } = order;
+  const { name, price, orderQuantity, paid, _id, transactionId } = order;
   return (
     <tr>
       <th>{index + 1}</th>
@@ -11,7 +11,10 @@ const MyOrdersRow = ({ order, index, setOrderToDelete }) => {
       <td> {orderQuantity}</td>
       <td>
         {paid ? (
-          <button className="btn btn-xs btn-success">paid</button>
+          <>
+            <label className="badge  badge-success">paid</label>
+            <p>TransactionID: {transactionId}</p>
+          </>
         ) : (
           <>
             <Link

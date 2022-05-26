@@ -16,7 +16,7 @@ const stripePromise = loadStripe(
 
 const Payment = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState({
+  const [order, setOrder] = useState({
     empty: true,
   });
   useEffect(() => {
@@ -28,7 +28,7 @@ const Payment = () => {
       },
     })
       .then((response) => response.json())
-      .then((data) => setProduct(data));
+      .then((data) => setOrder(data));
   }, []);
   // const { data: product, isLoading } = useQuery(["order", id], () =>
   //   fetch(`http://localhost:5000/orders/${id}`, {
@@ -48,21 +48,23 @@ const Payment = () => {
       <div class="card max-w-md shadow-xl">
         <div class="card-body">
           <h2 class="card-title">
-            Please pay for {product?.name || "Thunderbolt xxReaper"}
+            Please pay for {order?.name || "Thunderbolt xxReaper"}
           </h2>
-          <p>Quantity: {product?.quantity || "455"}</p>
+          <p>Quantity: {order?.quantity || "455"}</p>
           <div class="card-actions justify-end">
             <label class="badge-primary badge text-lg p-3">
-              ${product.price}
+              ${order.price}
             </label>
           </div>
         </div>
       </div>
-
+      <h1 className=" my-5 font-semibold text-slate-500">
+        Only accept through card
+      </h1>
       <div class="card max-w-md shadow-xl">
         <div class="card-body">
           <Elements stripe={stripePromise}>
-            <CheckoutForm price={product.price} />
+            <CheckoutForm order={order} />
           </Elements>
         </div>
       </div>
