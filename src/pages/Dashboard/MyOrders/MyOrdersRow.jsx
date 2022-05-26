@@ -29,7 +29,7 @@ const MyOrdersRow = ({ order, index, setOrderToDelete }) => {
                   setOrderToDelete(order);
                 }}
                 for="modal-confirm"
-                class="btn btn-xs modal-button btn-error"
+                className="btn btn-xs modal-button btn-error"
               >
                 Cancel
               </label>

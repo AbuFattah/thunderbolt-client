@@ -84,10 +84,17 @@ const CheckoutForm = ({ order }) => {
     if (paymentIntent.id) {
       setSuccess("Payment Successfull!");
       setTransactionId(paymentIntent.id);
-      axiosFetch.patch(
+      fetch(
         `https://quiet-sierra-02011.herokuapp.com/orders/payment/${order._id}`,
         {
-          transactionId: paymentIntent.id,
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json",
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+          body: JSON.stringify({
+            transactionId: paymentIntent.id,
+          }),
         }
       );
     }

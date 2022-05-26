@@ -8,10 +8,13 @@ const Dashboard = () => {
   const [user] = useAuthState(auth);
   const [isAdmin] = useIsAdmin(user.email);
   return (
-    <div class="drawer drawer-mobile">
-      <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-      <div class="drawer-content">
-        <label for="my-drawer-2" class="btn btn-ghost drawer-button lg:hidden">
+    <div className="drawer drawer-mobile">
+      <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+      <div className="drawer-content">
+        <label
+          for="my-drawer-2"
+          className="btn btn-ghost drawer-button lg:hidden"
+        >
           <DashboardIcon className="text-2xl" />
         </label>
         {/* <!-- Page content here --> */}
@@ -19,9 +22,9 @@ const Dashboard = () => {
           <Outlet />
         </p>
       </div>
-      <div class="drawer-side">
-        <label for="my-drawer-2" class="drawer-overlay"></label>
-        <ul class=" menu p-4 overflow-y-auto w-80 text-black bg-gray-100 ">
+      <div className="drawer-side">
+        <label for="my-drawer-2" className="drawer-overlay"></label>
+        <ul className=" menu p-4 overflow-y-auto w-80 text-black bg-gray-100 ">
           {/* <!-- Sidebar content here --> */}
           <li>
             <Link to="">My Profile</Link>

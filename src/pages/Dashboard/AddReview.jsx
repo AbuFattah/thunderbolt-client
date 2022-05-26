@@ -20,19 +20,26 @@ const AddReview = () => {
     }),
     onSubmit: async (values, { resetForm }) => {
       const { description, rating } = values;
-      await axiosFetch
-        .post("https://quiet-sierra-02011.herokuapp.com/reviews/", {
-          name: userProfile?.name,
-          image:
-            userProfile?.image ||
-            "https://api.lorem.space/image/face?hash=3174",
-          description,
-          rating,
-        })
-        .then((res) => res.json())
-        .then((data) => {
-          toast.success("added review successfully");
-        });
+      const data = await fetch(
+        "https://quiet-sierra-02011.herokuapp.com/reviews/",
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+          body: JSON.stringify({
+            name: userProfile?.name,
+            image:
+              userProfile?.image ||
+              "https://api.lorem.space/image/face?hash=3174",
+            description,
+            rating,
+          }),
+        }
+      ).then((res) => res.json());
+      resetForm();
+      toast.success("added review successfully");
     },
   });
   return (

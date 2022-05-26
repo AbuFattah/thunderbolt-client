@@ -9,7 +9,7 @@ const ManageUsersRow = ({ handleMakeAdmin, user, index }) => {
       <td>{email}</td>
       <td>{role ? role : "User"}</td>
       <td>{phone ? phone : "Not provided"}</td>
-      <td class="flex gap-2 items-center">
+      <td className="flex gap-2 items-center">
         <button
           onClick={handleMakeAdmin.bind(null, email)}
           className="btn btn-sm btn-secondary"

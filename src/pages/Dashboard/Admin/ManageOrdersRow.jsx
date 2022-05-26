@@ -34,13 +34,13 @@ const ManageOrdersRow = ({
           </>
         )}
       </td>
-      <td class="flex gap-2 items-center">
+      <td className="flex gap-2 items-center">
         {
           <button
             disabled={status === "shipped" || !paid}
             onClick={handleShippedStatus.bind(null, orderId)}
             tabIndex="0"
-            class="btn btn-xs "
+            className="btn btn-xs "
           >
             set Shipped
           </button>
@@ -51,7 +51,7 @@ const ManageOrdersRow = ({
               setOrderToDelete(order);
             }}
             for="modal-confirm"
-            class="btn btn-xs modal-button btn-error m-1"
+            className="btn btn-xs modal-button btn-error m-1"
           >
             Cancel
           </label>

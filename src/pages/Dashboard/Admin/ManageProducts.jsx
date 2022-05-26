@@ -28,11 +28,11 @@ const ManageProducts = () => {
   }, [refetch]);
   return (
     <>
-      <div class="overflow-x-auto">
+      <div className="overflow-x-auto">
         <h1 className="text-3xl font-semibold mb-5 uppercase p-3 border-l-2">
           Manage Products
         </h1>
-        <table class="table w-full">
+        <table className="table w-full">
           <thead>
             <tr>
               <th></th>

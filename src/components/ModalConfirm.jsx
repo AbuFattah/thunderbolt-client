@@ -6,13 +6,13 @@ const ModalConfirm = ({ itemId, onDelete, children, actionName }) => {
   // using react portal to put modal in body to avoid stacking context issues
   return ReactDOM.createPortal(
     <>
-      <input type="checkbox" id="modal-confirm" class="modal-toggle" />
-      <div class="modal">
-        <div class="modal-box">
-          <h3 class="font-bold text-lg">Are you sure?</h3>
-          <p class="py-4">{children}</p>
-          <div class="modal-action">
-            <label for="modal-confirm" class="btn">
+      <input type="checkbox" id="modal-confirm" className="modal-toggle" />
+      <div className="modal">
+        <div className="modal-box">
+          <h3 className="font-bold text-lg">Are you sure?</h3>
+          <p className="py-4">{children}</p>
+          <div className="modal-action">
+            <label for="modal-confirm" className="btn">
               Close
             </label>
             <button

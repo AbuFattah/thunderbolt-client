@@ -60,10 +60,10 @@ const Navbar = () => {
           <div className="navbar-end">
             <button className="btn btn-ghost btn-circle dropdown dropdown-end">
               <UserIcon className="text-2xl" />
-              <label tabIndex="0" class=""></label>
+              <label tabIndex="0" className=""></label>
               <ul
                 tabIndex="0"
-                class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+                className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
               >
                 {user ? (
                   <>

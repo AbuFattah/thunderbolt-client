@@ -93,7 +93,7 @@ const Purchase = () => {
 
   return (
     <div className="container mx-auto max-w-[1200px] p-5">
-      <div class="card lg:card-side bg-base-100 shadow-xl gap-10">
+      <div className="card lg:card-side bg-base-100 shadow-xl gap-10">
         <figure>
           <img
             // src="https://api.lorem.space/image/album?w=400&h=400"
@@ -102,8 +102,8 @@ const Purchase = () => {
             alt="Album"
           />
         </figure>
-        <div class="card-body">
-          <h2 class="card-title">{name}</h2>
+        <div className="card-body">
+          <h2 className="card-title">{name}</h2>
           <ul className="list-disc text-slate-500">
             {Array.isArray(details) ? (
               details?.map((detail) => (
@@ -127,8 +127,8 @@ const Purchase = () => {
               <p className="text-secondary text-center">{quantity}</p>
             </div>
           </div>
-          {/* <div class="card-actions justify-end">
-            <button class="btn btn-primary">Listen</button>
+          {/* <div className="card-actions justify-end">
+            <button className="btn btn-primary">Listen</button>
           </div> */}
         </div>
       </div>
@@ -139,9 +139,9 @@ const Purchase = () => {
         </div>
         <form onSubmit={formik.handleSubmit}>
           <div className=" grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <div class="form-control w-full ">
-              <label class="label">
-                <span class="label-text">Address:</span>
+            <div className="form-control w-full ">
+              <label className="label">
+                <span className="label-text">Address:</span>
               </label>
               <input
                 name="address"
@@ -151,19 +151,19 @@ const Purchase = () => {
                 value={formik.values.address}
                 type="text"
                 placeholder="Type here"
-                class="input input-bordered w-full "
+                className="input input-bordered w-full "
               />
               {formik.touched.address && formik.errors.address && (
-                <label class="label">
-                  <span class="label-text-alt text-red-500">
+                <label className="label">
+                  <span className="label-text-alt text-red-500">
                     {formik.errors.address}
                   </span>
                 </label>
               )}
             </div>
-            <div class="form-control w-full ">
-              <label class="label">
-                <span class="label-text">Phone No.</span>
+            <div className="form-control w-full ">
+              <label className="label">
+                <span className="label-text">Phone No.</span>
               </label>
               <input
                 name="phone"
@@ -173,19 +173,19 @@ const Purchase = () => {
                 value={formik.values.phone}
                 type="text"
                 placeholder="Type here"
-                class="input input-bordered w-full"
+                className="input input-bordered w-full"
               />
               {formik.touched.phone && formik.errors.phone && (
-                <label class="label">
-                  <span class="label-text-alt text-red-500">
+                <label className="label">
+                  <span className="label-text-alt text-red-500">
                     {formik.errors.phone}
                   </span>
                 </label>
               )}
             </div>
-            <div class="form-control w-full ">
-              <label class="label">
-                <span class="label-text">Quantity</span>
+            <div className="form-control w-full ">
+              <label className="label">
+                <span className="label-text">Quantity</span>
               </label>
               <input
                 name="orderQuantity"
@@ -197,11 +197,11 @@ const Purchase = () => {
                 value={formik.values.orderQuantity}
                 type="number"
                 placeholder="Type here"
-                class="input input-bordered w-full"
+                className="input input-bordered w-full"
               />
               {formik.touched.orderQuantity && formik.errors.orderQuantity && (
-                <label class="label">
-                  <span class="label-text-alt text-red-500">
+                <label className="label">
+                  <span className="label-text-alt text-red-500">
                     {formik.errors.orderQuantity}
                   </span>
                 </label>

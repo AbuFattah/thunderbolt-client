@@ -3,14 +3,14 @@ import React from "react";
 const BusinessSummary = () => {
   return (
     <div className="flex justify-center my-10">
-      <div class="stats shadow stats-vertical md:stats-horizontal">
-        <div class="stat">
-          <div class="stat-figure text-secondary">
+      <div className="stats shadow stats-vertical md:stats-horizontal">
+        <div className="stat">
+          <div className="stat-figure text-secondary">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              class="inline-block w-8 h-8 stroke-current"
+              className="inline-block w-8 h-8 stroke-current"
             >
               <path
                 strokeLinecap="round"
@@ -20,17 +20,17 @@ const BusinessSummary = () => {
               ></path>
             </svg>
           </div>
-          <div class="stat-title">Annual Revenue</div>
-          <div class="stat-value">200M</div>
+          <div className="stat-title">Annual Revenue</div>
+          <div className="stat-value">200M</div>
         </div>
 
-        <div class="stat">
-          <div class="stat-figure text-secondary">
+        <div className="stat">
+          <div className="stat-figure text-secondary">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              class="inline-block w-8 h-8 stroke-current"
+              className="inline-block w-8 h-8 stroke-current"
             >
               <path
                 strokeLinecap="round"
@@ -40,18 +40,18 @@ const BusinessSummary = () => {
               ></path>
             </svg>
           </div>
-          <div class="stat-title">Customers Served</div>
-          <div class="stat-value">300K+</div>
-          {/* <div class="stat-desc">↗︎ 400 (22%)</div> */}
+          <div className="stat-title">Customers Served</div>
+          <div className="stat-value">300K+</div>
+          {/* <div className="stat-desc">↗︎ 400 (22%)</div> */}
         </div>
 
-        <div class="stat">
-          <div class="stat-figure text-secondary">
+        <div className="stat">
+          <div className="stat-figure text-secondary">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              class="inline-block w-8 h-8 stroke-current"
+              className="inline-block w-8 h-8 stroke-current"
             >
               <path
                 strokeLinecap="round"
@@ -61,8 +61,8 @@ const BusinessSummary = () => {
               ></path>
             </svg>
           </div>
-          <div class="stat-title">Reviews</div>
-          <div class="stat-value">20K+</div>
+          <div className="stat-title">Reviews</div>
+          <div className="stat-value">20K+</div>
         </div>
       </div>
     </div>

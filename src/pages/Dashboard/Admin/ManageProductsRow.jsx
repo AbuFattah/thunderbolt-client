@@ -9,14 +9,14 @@ const ManageProductsRow = ({ setProduct, product, index }) => {
       <td>{quantity}</td>
       <td>{minOrder}</td>
       <td>${price}</td>
-      <td class="flex gap-2 items-center">
+      <td className="flex gap-2 items-center">
         {
           <label
             onClick={() => {
               setProduct(product);
             }}
             for="modal-confirm"
-            class="btn btn-xs modal-button btn-error m-1"
+            className="btn btn-xs modal-button btn-error m-1"
           >
             Delete
           </label>
