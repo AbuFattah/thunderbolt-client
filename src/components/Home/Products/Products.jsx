@@ -6,7 +6,6 @@ const Products = () => {
     fetch("http://localhost:5000/featuredProducts")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setProducts(data);
       });
   }, []);

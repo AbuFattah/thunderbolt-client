@@ -4,7 +4,7 @@ const useToken = (user) => {
   const [token, setToken] = useState("");
   useEffect(() => {
     if (!user) return;
-    console.log(user);
+
     fetch("http://localhost:5000/users", {
       method: "PUT",
       headers: {
@@ -14,7 +14,6 @@ const useToken = (user) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setToken(data);
         localStorage.setItem("accessToken", data.token);
       });

@@ -7,8 +7,7 @@ const RequireAdmin = ({ children }) => {
   const [user, loading, error] = useAuthState(auth);
   const [isAdmin, adminLoading] = useIsAdmin(user?.email);
   let location = useLocation();
-  console.log(user, loading);
-  console.log(loading, adminLoading);
+
   if (loading || adminLoading) {
     return <p>Loading...</p>;
   }

@@ -8,14 +8,12 @@ import { useEffect, useState } from "react";
 import axiosFetch from "../../vendors/axios";
 
 const CheckoutForm = ({ price }) => {
-  console.log(price, "rendered");
   const [paymentError, setPaymentError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const stripe = useStripe();
   const elements = useElements();
 
   useEffect(() => {
-    console.log("effect ran", price);
     fetch(`http://localhost:5000/create-payment-intent`, {
       method: "POST",
       headers: {

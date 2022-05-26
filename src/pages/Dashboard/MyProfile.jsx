@@ -30,7 +30,7 @@ const MyProfile = () => {
     }),
     onSubmit: async (values) => {
       const { name, address, phone, email } = values;
-      console.log(name);
+
       await updateProfile({ displayName: name });
       const result = await axiosFetch.put(
         `http://localhost:5000/updateProfile/${email}`,

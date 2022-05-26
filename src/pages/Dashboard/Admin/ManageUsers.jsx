@@ -9,7 +9,6 @@ const ManageUsers = () => {
   const [refetch, setRefetch] = useState(false);
   const handleMakeAdmin = (email) => {
     axiosFetch.patch(`http://localhost:5000/makeAdmin/${email}`).then((res) => {
-      console.log(res);
       if (!res.statusText === "OK") {
         toast.error("Something went wrong");
         return;

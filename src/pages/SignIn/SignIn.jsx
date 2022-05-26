@@ -41,7 +41,6 @@ const SignIn = () => {
         .required("Email is required"),
     }),
     onSubmit: async (values) => {
-      console.log(values);
       await signInWithEmailAndPassword(values.email, values.password);
     },
   });

@@ -40,7 +40,7 @@ const AddProduct = () => {
       // if (!data.statusText === "success") {
       //   signOut(auth);
       // }
-      console.log(data);
+
       resetForm();
       toast.success("Product added successfully");
       navigate("/");

@@ -64,7 +64,7 @@ const Purchase = () => {
           price,
         }),
       }).then((res) => res.json());
-      console.log(result.success);
+
       if (result.success) {
         toast.success("Order has been placed, please pay to proceed");
       } else {

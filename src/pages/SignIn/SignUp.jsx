@@ -21,7 +21,7 @@ const SignUp = () => {
   const navigate = useNavigate();
   let location = useLocation();
   let path = location.state?.from || "/";
-  console.log(path);
+
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
