@@ -5,7 +5,7 @@ const useToken = (user) => {
   useEffect(() => {
     if (!user) return;
 
-    fetch("http://localhost:5000/users", {
+    fetch("https://quiet-sierra-02011.herokuapp.com/users", {
       method: "PUT",
       headers: {
         "content-type": "application/json",

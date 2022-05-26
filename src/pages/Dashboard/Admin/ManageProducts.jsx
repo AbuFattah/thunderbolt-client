@@ -10,7 +10,7 @@ const ManageProducts = () => {
   const [product, setProduct] = useState(null);
   const handleDeleteProduct = async (productId) => {
     const response = await axiosFetch.delete(
-      `http://localhost:5000/products/${productId}`
+      `https://quiet-sierra-02011.herokuapp.com/products/${productId}`
     );
     if (response.statusText !== "OK") {
       toast.error("Product deleted failed");
@@ -22,7 +22,7 @@ const ManageProducts = () => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/products`)
+    fetch(`https://quiet-sierra-02011.herokuapp.com/products`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, [refetch]);

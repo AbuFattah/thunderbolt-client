@@ -33,14 +33,14 @@ const MyProfile = () => {
 
       await updateProfile({ displayName: name });
       const result = await axiosFetch.put(
-        `http://localhost:5000/updateProfile/${email}`,
+        `https://quiet-sierra-02011.herokuapp.com/updateProfile/${email}`,
         {
           ...values,
         }
       );
       toast.success("updated Profile");
       setEditable(false);
-      // await fetch('http://localhost:5000/updateProfile')
+      // await fetch('https://quiet-sierra-02011.herokuapp.com/updateProfile')
     },
   });
 

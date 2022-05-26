@@ -20,7 +20,7 @@ const Payment = () => {
     empty: true,
   });
   useEffect(() => {
-    fetch(`http://localhost:5000/singleOrder/${id}`, {
+    fetch(`https://quiet-sierra-02011.herokuapp.com/singleOrder/${id}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -31,7 +31,7 @@ const Payment = () => {
       .then((data) => setOrder(data));
   }, []);
   // const { data: product, isLoading } = useQuery(["order", id], () =>
-  //   fetch(`http://localhost:5000/orders/${id}`, {
+  //   fetch(`https://quiet-sierra-02011.herokuapp.com/orders/${id}`, {
   //     method: "GET",
   //     headers: {
   //       "content-type": "application/json",

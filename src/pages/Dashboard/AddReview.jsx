@@ -21,7 +21,7 @@ const AddReview = () => {
     onSubmit: async (values, { resetForm }) => {
       const { description, rating } = values;
       await axiosFetch
-        .post("http://localhost:5000/reviews/", {
+        .post("https://quiet-sierra-02011.herokuapp.com/reviews/", {
           name: userProfile?.name,
           image:
             userProfile?.image ||

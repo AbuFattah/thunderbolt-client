@@ -8,17 +8,19 @@ const ManageUsers = () => {
   const [users, setUsers] = useState([]);
   const [refetch, setRefetch] = useState(false);
   const handleMakeAdmin = (email) => {
-    axiosFetch.patch(`http://localhost:5000/makeAdmin/${email}`).then((res) => {
-      if (!res.statusText === "OK") {
-        toast.error("Something went wrong");
-        return;
-      }
-      setRefetch(!refetch);
-      toast.success("make admin successfull");
-    });
+    axiosFetch
+      .patch(`https://quiet-sierra-02011.herokuapp.com/makeAdmin/${email}`)
+      .then((res) => {
+        if (!res.statusText === "OK") {
+          toast.error("Something went wrong");
+          return;
+        }
+        setRefetch(!refetch);
+        toast.success("make admin successfull");
+      });
   };
   useEffect(() => {
-    fetch("http://localhost:5000/users")
+    fetch("https://quiet-sierra-02011.herokuapp.com/users")
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, [refetch]);

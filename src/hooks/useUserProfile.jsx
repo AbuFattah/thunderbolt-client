@@ -8,7 +8,9 @@ export default function useUser() {
   const [userProfile, setUserProfile] = useState(null);
   useEffect(() => {
     axiosFetch
-      .get(`http://localhost:5000/userProfile/${firebaseUser.email}`)
+      .get(
+        `https://quiet-sierra-02011.herokuapp.com/userProfile/${firebaseUser.email}`
+      )
       .then((res) => setUserProfile(res.data));
   }, [firebaseUser]);
   return [userProfile];

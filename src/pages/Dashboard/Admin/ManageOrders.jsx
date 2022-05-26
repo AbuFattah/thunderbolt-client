@@ -16,7 +16,7 @@ const ManageOrders = () => {
     if (order.paid) return;
 
     const response = await axiosFetch.delete(
-      `http://localhost:5000/orders/${orderId}`
+      `https://quiet-sierra-02011.herokuapp.com/orders/${orderId}`
     );
 
     // if (response.statusText !== "OK") {
@@ -30,7 +30,7 @@ const ManageOrders = () => {
   const handleShippedStatus = async (orderId) => {
     // UPDATING STATUS TO SHIPPED
     const res = await axiosFetch.patch(
-      `http://localhost:5000/orders/${orderId}`
+      `https://quiet-sierra-02011.herokuapp.com/orders/${orderId}`
     );
     if (res.statusText !== "OK") {
       toast.error("Product deleted failed");
@@ -42,7 +42,7 @@ const ManageOrders = () => {
 
   useEffect(() => {
     axiosFetch
-      .get(`http://localhost:5000/orders`)
+      .get(`https://quiet-sierra-02011.herokuapp.com/orders`)
       .then((res) => setOrders(res.data));
   }, [refetch]);
   return (

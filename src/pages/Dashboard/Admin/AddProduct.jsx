@@ -32,10 +32,13 @@ const AddProduct = () => {
     onSubmit: async (values, { resetForm }) => {
       let { details } = values;
       details = details.split(",");
-      const data = await axiosFetch.post("http://localhost:5000/products", {
-        ...values,
-        details,
-      });
+      const data = await axiosFetch.post(
+        "https://quiet-sierra-02011.herokuapp.com/products",
+        {
+          ...values,
+          details,
+        }
+      );
 
       // if (!data.statusText === "success") {
       //   signOut(auth);

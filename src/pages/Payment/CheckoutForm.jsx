@@ -19,7 +19,7 @@ const CheckoutForm = ({ order }) => {
   console.log(order);
   useEffect(() => {
     if (!order.price) return;
-    fetch(`http://localhost:5000/create-payment-intent`, {
+    fetch(`https://quiet-sierra-02011.herokuapp.com/create-payment-intent`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -84,9 +84,12 @@ const CheckoutForm = ({ order }) => {
     if (paymentIntent.id) {
       setSuccess("Payment Successfull!");
       setTransactionId(paymentIntent.id);
-      axiosFetch.patch(`http://localhost:5000/orders/payment/${order._id}`, {
-        transactionId: paymentIntent.id,
-      });
+      axiosFetch.patch(
+        `https://quiet-sierra-02011.herokuapp.com/orders/payment/${order._id}`,
+        {
+          transactionId: paymentIntent.id,
+        }
+      );
     }
   };
   return (

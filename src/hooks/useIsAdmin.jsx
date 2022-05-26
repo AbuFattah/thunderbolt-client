@@ -4,7 +4,7 @@ export default function useIsAdmin(email) {
   const [adminLoading, setAdminLoading] = useState(true);
   useEffect(() => {
     if (!email) return;
-    fetch(`http://localhost:5000/isAdmin/${email}`)
+    fetch(`https://quiet-sierra-02011.herokuapp.com/isAdmin/${email}`)
       .then((res) => res.json())
       .then((data) => {
         setIsAdmin(data.isAdmin);
