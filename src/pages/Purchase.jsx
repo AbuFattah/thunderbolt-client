@@ -18,16 +18,20 @@ const Purchase = () => {
   const { img, minOrder, name, price, details, quantity } = product;
 
   useEffect(() => {
-    axiosFetch
-      .get(`http://localhost:5000/products/${id}`)
-      .then((response) => setProduct(response.data));
+    fetch(`http://localhost:5000/products/${id}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => setProduct(data));
   }, [refetch]);
 
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
       address: "",
-      phone: "",
+      phone: 0,
       orderQuantity: product.minOrder,
     },
     validationSchema: Yup.object({
@@ -41,6 +45,7 @@ const Purchase = () => {
         .required("Quantity is required"),
     }),
     onSubmit: async (values, { resetForm }) => {
+      const { address, orderQuantity, phone } = values;
       const result = await fetch(`http://localhost:5000/orders/${id}`, {
         method: "POST",
         headers: {
@@ -48,7 +53,9 @@ const Purchase = () => {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
         body: JSON.stringify({
-          ...values,
+          orderQuantity: parseInt(orderQuantity),
+          phone: parseInt(phone),
+          address,
           email: user.email,
           userName: user.displayName,
           paid: false,
@@ -95,9 +102,13 @@ const Purchase = () => {
         <div class="card-body">
           <h2 class="card-title">{name}</h2>
           <ul className="list-disc text-slate-500">
-            {details?.map((detail) => (
-              <li key={Math.random().toString()}>{detail}</li>
-            ))}
+            {Array.isArray(details) ? (
+              details?.map((detail) => (
+                <li key={Math.random().toString()}>{detail}</li>
+              ))
+            ) : (
+              <p>{details}</p>
+            )}
           </ul>
           <div className="flex flex-wrap gap-4 my-5">
             <div className="shadow p-2 px-6">

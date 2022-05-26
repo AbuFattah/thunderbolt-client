@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosFetch = axios.create({
-  baseURL: "",
+  // baseURL: "",
   headers: {
     authorization: `Bearer ${localStorage.getItem("accessToken")}`,
   },

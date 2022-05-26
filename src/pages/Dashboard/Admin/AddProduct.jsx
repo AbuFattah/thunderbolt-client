@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from "react";
-// import { useAuthState } from "react-firebase-hooks/auth";
-// import { auth } from "../firebase.config";
-// import { useParams } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../../../firebase.config";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import axiosFetch from "../../../vendors/axios";
+import { useNavigate } from "react-router-dom";
+// end of imports
+
 const AddProduct = () => {
+  const navigate = useNavigate();
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      name: "",
-      details: "",
-      quantity: "",
-      minOrder: "",
-      price: "",
-      category: "",
-      imageURL: "",
+      // name: "",
+      // details: "",
+      // quantity: "",
+      // minOrder: "",
+      // price: "",
+      // category: "",
+      // imageURL: "",
     },
     validationSchema: Yup.object({
       name: Yup.string().required("provide name of product"),
@@ -27,9 +30,19 @@ const AddProduct = () => {
       category: Yup.string().required("Please provide a category"),
     }),
     onSubmit: async (values, { resetForm }) => {
-      await axiosFetch.post("http://localhost:5000/products", { ...values });
+      const data = await axiosFetch
+        .post("http://localhost:5000/products", {
+          ...values,
+        })
+        .then((res) => res.json());
+
+      // if (!data.statusText === "success") {
+      //   signOut(auth);
+      // }
+      console.log(data);
       resetForm();
       toast.success("Product added successfully");
+      navigate("/");
     },
   });
 
@@ -50,7 +63,7 @@ const AddProduct = () => {
           <input
             required
             placeholder="Motherboard B450M"
-            className="p-2 focus:outline-none w-full border-2 border-purple-200 flex-auto"
+            className="p-2 focus:outline-none w-full border border-purple-200 flex-auto"
             type="text"
             name="name"
             onChange={formik.handleChange}
@@ -68,7 +81,7 @@ const AddProduct = () => {
           <input
             required
             placeholder="Comma separated eg. 2333MHz, USB3.0, PCIe 3.0"
-            className="p-2 focus:outline-none w-full border-2 border-purple-200 flex-auto"
+            className="p-2 focus:outline-none w-full border border-purple-200 flex-auto"
             type="text"
             name="details"
             onChange={formik.handleChange}
@@ -85,8 +98,8 @@ const AddProduct = () => {
           <input
             required
             placeholder="3000"
-            className="p-2 focus:outline-none w-full border-2 border-purple-200 flex-auto"
-            type="text"
+            className="p-2 focus:outline-none w-full border border-purple-200 flex-auto"
+            type="number"
             name="quantity"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -102,8 +115,8 @@ const AddProduct = () => {
           <input
             required
             placeholder="300"
-            className="p-2 focus:outline-none w-full border-2 border-purple-200 flex-auto"
-            type="text"
+            className="p-2 focus:outline-none w-full border border-purple-200 flex-auto"
+            type="number"
             name="minOrder"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -119,8 +132,8 @@ const AddProduct = () => {
           <input
             required
             placeholder="300"
-            className="p-2 focus:outline-none w-full border-2 border-purple-200 flex-auto"
-            type="text"
+            className="p-2 focus:outline-none w-full border border-purple-200 flex-auto"
+            type="number"
             name="price"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -135,7 +148,7 @@ const AddProduct = () => {
           <input
             required
             placeholder="motherboard"
-            className="p-2 focus:outline-none w-full border-2 border-purple-200 flex-auto"
+            className="p-2 focus:outline-none w-full border border-purple-200 flex-auto"
             type="text"
             name="category"
             onChange={formik.handleChange}
@@ -148,7 +161,7 @@ const AddProduct = () => {
           <input
             required
             placeholder="motherboard"
-            className="p-2 focus:outline-none w-full border-2 border-purple-200 flex-auto"
+            className="p-2 focus:outline-none w-full border border-purple-200 flex-auto"
             type="text"
             name="imageURL"
             onChange={formik.handleChange}
