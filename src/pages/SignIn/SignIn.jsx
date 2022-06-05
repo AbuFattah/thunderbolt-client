@@ -57,7 +57,25 @@ const SignIn = () => {
   }
 
   return (
-    <div className="flex justify-center items-center">
+    <div
+      style={{ minHeight: "calc(100vh - 64px)" }}
+      className="flex flex-col justify-center items-center"
+    >
+      <div>
+        <h1 className="font-semibold">For Admin:</h1>
+        <p>
+          <span className="font-semibold"> Email:</span> admin@admin.com
+          <span className="font-semibold"> Password:</span> root123
+        </p>
+        <hr className="mb-4" />
+      </div>
+      <div>
+        <h1 className="font-semibold">For User:</h1>
+        <p>
+          <span className="font-semibold"> Email:</span> john@gmail.com
+          <span className="font-semibold"> Password:</span> 123123
+        </p>
+      </div>
       <form
         onSubmit={formik.handleSubmit}
         style={{
