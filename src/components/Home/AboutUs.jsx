@@ -4,7 +4,10 @@ import { AiOutlineFieldTime as TimeIcon } from "react-icons/ai";
 import { VscTools as ServiceIcon } from "react-icons/vsc";
 const AboutUs = () => {
   return (
-    <section className="bg-dark py-14 flex items-center justify-center gap-10">
+    <section
+      id="about"
+      className="bg-dark py-14 flex flex-col md:flex-row items-center justify-center gap-10"
+    >
       <div className="item cursor-pointer flex flex-col items-center justify-center gap-3 hover:bg-black ease-in-out duration-300 bg-lightDark w-52 h-52 text-white rounded-md  ">
         <HomeIcon className="text-6xl duration-500" />
         <p className="text-lg">About Us</p>

@@ -4,7 +4,7 @@ import { FaLock as LockIcon } from "react-icons/fa";
 import { FaBox as BoxIcon } from "react-icons/fa";
 const Perks = () => {
   return (
-    <section class="perks-section inner-container py-10 bg-gray-100">
+    <section class="perks-section inner-container py-10 bg-gray-100 px-5">
       <div class="perk-container flex-col md:flex-row ">
         <div class="perk">
           <div class="perk__icon">
