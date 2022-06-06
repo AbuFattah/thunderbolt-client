@@ -6,6 +6,8 @@ import Conference from "../../components/Home/Conference";
 import Products from "../../components/Home/Products/Products";
 import Navbar from "../../components/Navbar";
 import Reviews from "../../components/Home/Reviews/Reviews";
+import Perks from "../../components/Perks";
+import AboutUs from "../../components/Home/AboutUs";
 
 const Home = () => {
   return (
@@ -14,6 +16,8 @@ const Home = () => {
       <BusinessSummary />
       <Products />
       <Conference />
+      <AboutUs />
+      <Perks />
       <Reviews />
     </div>
   );
