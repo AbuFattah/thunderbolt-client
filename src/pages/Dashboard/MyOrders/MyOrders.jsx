@@ -15,7 +15,7 @@ const MyOrders = () => {
   const handleDeleteOrder = (orderId) => {
     const order = orders.find((order) => order._id === orderId);
     if (order.paid) return;
-    fetch(`https://quiet-sierra-02011.herokuapp.com/orders/${orderId}`, {
+    fetch(`https://thunderbolt-devfattah0.b4a.run/orders/${orderId}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -30,7 +30,7 @@ const MyOrders = () => {
   };
   useEffect(() => {
     if (!user) return;
-    fetch(`https://quiet-sierra-02011.herokuapp.com/orders/${user?.email}`, {
+    fetch(`https://thunderbolt-devfattah0.b4a.run/orders/${user?.email}`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,

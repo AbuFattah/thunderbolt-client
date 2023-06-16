@@ -21,7 +21,7 @@ const AddReview = () => {
     onSubmit: async (values, { resetForm }) => {
       const { description, rating } = values;
       const data = await fetch(
-        "https://quiet-sierra-02011.herokuapp.com/reviews/",
+        "https://thunderbolt-devfattah0.b4a.run/reviews/",
         {
           method: "POST",
           headers: {

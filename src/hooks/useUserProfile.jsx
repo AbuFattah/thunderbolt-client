@@ -9,7 +9,7 @@ export default function useUser() {
   useEffect(() => {
     axiosFetch
       .get(
-        `https://quiet-sierra-02011.herokuapp.com/userProfile/${firebaseUser.email}`
+        `https://thunderbolt-devfattah0.b4a.run/userProfile/${firebaseUser.email}`
       )
       .then((res) => setUserProfile(res.data));
   }, [firebaseUser]);

@@ -11,7 +11,7 @@ const ManageUsers = () => {
   // toast.success("make admin successfull");
   const handleMakeAdmin = async (email) => {
     const data = await fetch(
-      `https://quiet-sierra-02011.herokuapp.com/makeAdmin/${email}`,
+      `https://thunderbolt-devfattah0.b4a.run/makeAdmin/${email}`,
       {
         method: "PATCH",
         headers: {
@@ -25,7 +25,7 @@ const ManageUsers = () => {
     toast.success("make admin successfull");
   };
   useEffect(() => {
-    fetch("https://quiet-sierra-02011.herokuapp.com/users")
+    fetch("https://thunderbolt-devfattah0.b4a.run/users")
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, [refetch]);

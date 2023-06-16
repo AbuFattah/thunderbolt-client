@@ -18,7 +18,7 @@ const Purchase = () => {
   const { img, minOrder, name, price, details, quantity } = product;
 
   useEffect(() => {
-    fetch(`https://quiet-sierra-02011.herokuapp.com/products/${id}`, {
+    fetch(`https://thunderbolt-devfattah0.b4a.run/products/${id}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
@@ -47,7 +47,7 @@ const Purchase = () => {
     onSubmit: async (values, { resetForm }) => {
       const { address, orderQuantity, phone } = values;
       const result = await fetch(
-        `https://quiet-sierra-02011.herokuapp.com/orders/${id}`,
+        `https://thunderbolt-devfattah0.b4a.run/orders/${id}`,
         {
           method: "POST",
           headers: {

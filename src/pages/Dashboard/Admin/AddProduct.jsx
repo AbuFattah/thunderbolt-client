@@ -33,7 +33,7 @@ const AddProduct = () => {
       let { details } = values;
       details = details.split(",");
       const data = await axiosFetch.post(
-        "https://quiet-sierra-02011.herokuapp.com/products",
+        "https://thunderbolt-devfattah0.b4a.run/products",
         {
           ...values,
           details,

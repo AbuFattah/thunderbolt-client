@@ -20,7 +20,7 @@ const Payment = () => {
     empty: true,
   });
   useEffect(() => {
-    fetch(`https://quiet-sierra-02011.herokuapp.com/singleOrder/${id}`, {
+    fetch(`https://thunderbolt-devfattah0.b4a.run/singleOrder/${id}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -31,7 +31,7 @@ const Payment = () => {
       .then((data) => setOrder(data));
   }, []);
   // const { data: product, isLoading } = useQuery(["order", id], () =>
-  //   fetch(`https://quiet-sierra-02011.herokuapp.com/orders/${id}`, {
+  //   fetch(`https://thunderbolt-devfattah0.b4a.run/orders/${id}`, {
   //     method: "GET",
   //     headers: {
   //       "content-type": "application/json",

@@ -4,6 +4,8 @@ import { useLocation, Navigate } from "react-router-dom";
 import { auth } from "../../firebase.config";
 const RequireAuth = ({ children }) => {
   const [user, loading, error] = useAuthState(auth);
+
+  console.log(user)
   let location = useLocation();
 
   if (loading) {

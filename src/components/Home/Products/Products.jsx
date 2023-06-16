@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import Product from "./Product";
 const Products = () => {
   const { data: products } = useQuery("products", () =>
-    fetch("https://quiet-sierra-02011.herokuapp.com/featuredProducts").then(
+    fetch("https://thunderbolt-devfattah0.b4a.run/featuredProducts").then(
       (res) => res.json()
     )
   );

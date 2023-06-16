@@ -33,14 +33,14 @@ const MyProfile = () => {
 
       await updateProfile({ displayName: name });
       const result = await axiosFetch.put(
-        `https://quiet-sierra-02011.herokuapp.com/updateProfile/${email}`,
+        `https://thunderbolt-devfattah0.b4a.run/updateProfile/${email}`,
         {
           ...values,
         }
       );
       toast.success("updated Profile");
       setEditable(false);
-      // await fetch('https://quiet-sierra-02011.herokuapp.com/updateProfile')
+      // await fetch('https://thunderbolt-devfattah0.b4a.run/updateProfile')
     },
   });
 

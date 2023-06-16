@@ -10,9 +10,9 @@ const ManageProducts = () => {
   const [product, setProduct] = useState(null);
   const handleDeleteProduct = async (productId) => {
     const response = await axiosFetch.delete(
-      `https://quiet-sierra-02011.herokuapp.com/products/${productId}`
+      `https://thunderbolt-devfattah0.b4a.run/products/${productId}`
     );
-    if (response.statusText !== "OK") {
+    if (response.status !== 200) {
       toast.error("Product deleted failed");
       return;
     }
@@ -22,7 +22,7 @@ const ManageProducts = () => {
   };
 
   useEffect(() => {
-    fetch(`https://quiet-sierra-02011.herokuapp.com/products`)
+    fetch(`https://thunderbolt-devfattah0.b4a.run/products`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, [refetch]);

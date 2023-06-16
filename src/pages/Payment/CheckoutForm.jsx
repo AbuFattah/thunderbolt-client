@@ -19,7 +19,7 @@ const CheckoutForm = ({ order }) => {
   console.log(order);
   useEffect(() => {
     if (!order.price) return;
-    fetch(`https://quiet-sierra-02011.herokuapp.com/create-payment-intent`, {
+    fetch(`https://thunderbolt-devfattah0.b4a.run/create-payment-intent`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -85,7 +85,7 @@ const CheckoutForm = ({ order }) => {
       setSuccess("Payment Successfull!");
       setTransactionId(paymentIntent.id);
       fetch(
-        `https://quiet-sierra-02011.herokuapp.com/orders/payment/${order._id}`,
+        `https://thunderbolt-devfattah0.b4a.run/orders/payment/${order._id}`,
         {
           method: "PATCH",
           headers: {
