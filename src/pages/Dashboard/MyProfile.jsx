@@ -34,24 +34,27 @@ const MyProfile = () => {
       await updateProfile({ displayName: name });
 
       // const result = await axiosFetch.put(
-      //   `http://18.61.173.75:4000/updateProfile/${email}`,
+      //   `https://thunderbolt-server.onrender.com/updateProfile/${email}`,
       //   {
       //     ...values,
       //   }
       // );
 
-      await fetch(`http://18.61.173.75:4000/updateProfile/${email}`, {
-        method: "PUT",
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({ ...values }),
-      });
+      await fetch(
+        `https://thunderbolt-server.onrender.com/updateProfile/${email}`,
+        {
+          method: "PUT",
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ ...values }),
+        }
+      );
 
       toast.success("updated Profile");
       setEditable(false);
-      // await fetch('http://18.61.173.75:4000/updateProfile')
+      // await fetch('https://thunderbolt-server.onrender.com/updateProfile')
     },
   });
 

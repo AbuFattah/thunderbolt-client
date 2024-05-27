@@ -33,14 +33,14 @@ const AddProduct = () => {
       let { details } = values;
       details = details.split(",");
       // const data = await axiosFetch.post(
-      //   "http://18.61.173.75:4000/products",
+      //   "https://thunderbolt-server.onrender.com/products",
       //   {
       //     ...values,
       //     details,
       //   }
       // );
 
-      await fetch(`http://18.61.173.75:4000/products`, {
+      await fetch(`https://thunderbolt-server.onrender.com/products`, {
         method: "POST",
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,

@@ -16,10 +16,10 @@ const ManageOrders = () => {
     if (order.paid) return;
 
     // const response = await axiosFetch.delete(
-    //   `http://18.61.173.75:4000/orders/${orderId}`
+    //   `https://thunderbolt-server.onrender.com/orders/${orderId}`
     // );
 
-    await fetch(`http://18.61.173.75:4000/orders/${orderId}`, {
+    await fetch(`https://thunderbolt-server.onrender.com/orders/${orderId}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -37,12 +37,15 @@ const ManageOrders = () => {
   };
   const handleShippedStatus = async (orderId) => {
     // UPDATING STATUS TO SHIPPED
-    const res = await fetch(`http://18.61.173.75:4000/orders/${orderId}`, {
-      method: "PATCH",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    });
+    const res = await fetch(
+      `https://thunderbolt-server.onrender.com/orders/${orderId}`,
+      {
+        method: "PATCH",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    );
     if (!res.ok) {
       toast.error("Product Shipment failed");
       return;
@@ -55,12 +58,14 @@ const ManageOrders = () => {
     console.log(
       "33333333333333333333333333333333333333333333333333333333333333333"
     );
-    axiosFetch.get(`http://18.61.173.75:4000/orders`).then((res) => {
-      console.log("fsdalkfjlksadjf;lsdakjflakdsfjsladkfjsdlakfjsladkjf");
-      setOrders(res.data);
-    });
+    axiosFetch
+      .get(`https://thunderbolt-server.onrender.com/orders`)
+      .then((res) => {
+        console.log("fsdalkfjlksadjf;lsdakjflakdsfjsladkfjsdlakfjsladkjf");
+        setOrders(res.data);
+      });
 
-    //   fetch(`http://18.61.173.75:4000/orders`, {
+    //   fetch(`https://thunderbolt-server.onrender.com/orders`, {
     //   headers: {
     //     authorization: `Bearer ${localStorage.getItem("accessToken")}`,
     //   },

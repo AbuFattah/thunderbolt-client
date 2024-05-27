@@ -18,7 +18,7 @@ const Purchase = () => {
   const { img, minOrder, name, price, details, quantity } = product;
 
   useEffect(() => {
-    fetch(`http://18.61.173.75:4000/products/${id}`, {
+    fetch(`https://thunderbolt-server.onrender.com/products/${id}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
@@ -46,24 +46,27 @@ const Purchase = () => {
     }),
     onSubmit: async (values, { resetForm }) => {
       const { address, orderQuantity, phone } = values;
-      const result = await fetch(`http://18.61.173.75:4000/orders/${id}`, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-        body: JSON.stringify({
-          orderQuantity: parseInt(orderQuantity),
-          phone: parseInt(phone),
-          address,
-          email: user.email,
-          userName: user.displayName,
-          paid: false,
-          img,
-          name,
-          price,
-        }),
-      }).then((res) => res.json());
+      const result = await fetch(
+        `https://thunderbolt-server.onrender.com/orders/${id}`,
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+          body: JSON.stringify({
+            orderQuantity: parseInt(orderQuantity),
+            phone: parseInt(phone),
+            address,
+            email: user.email,
+            userName: user.displayName,
+            paid: false,
+            img,
+            name,
+            price,
+          }),
+        }
+      ).then((res) => res.json());
 
       if (result.success) {
         toast.success("Order has been placed, please pay to proceed");

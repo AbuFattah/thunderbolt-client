@@ -20,7 +20,7 @@ const Payment = () => {
     empty: true,
   });
   useEffect(() => {
-    fetch(`http://18.61.173.75:4000/singleOrder/${id}`, {
+    fetch(`https://thunderbolt-server.onrender.com/singleOrder/${id}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -31,7 +31,7 @@ const Payment = () => {
       .then((data) => setOrder(data));
   }, []);
   // const { data: product, isLoading } = useQuery(["order", id], () =>
-  //   fetch(`http://18.61.173.75:4000/orders/${id}`, {
+  //   fetch(`https://thunderbolt-server.onrender.com/orders/${id}`, {
   //     method: "GET",
   //     headers: {
   //       "content-type": "application/json",

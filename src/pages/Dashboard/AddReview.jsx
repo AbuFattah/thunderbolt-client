@@ -25,26 +25,29 @@ const AddReview = () => {
     }),
     onSubmit: async (values, { resetForm }) => {
       const { description, rating } = values;
-      const data = await fetch("http://18.61.173.75:4000/reviews/", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-        body: JSON.stringify({
-          name: userProfile?.name,
-          image: avatarLink,
-          description,
-          rating,
-        }),
-      }).then((res) => res.json());
+      const data = await fetch(
+        "https://thunderbolt-server.onrender.com/reviews/",
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+          body: JSON.stringify({
+            name: userProfile?.name,
+            image: avatarLink,
+            description,
+            rating,
+          }),
+        }
+      ).then((res) => res.json());
       resetForm();
       toast.success("added review successfully");
     },
   });
 
   useEffect(() => {
-    fetch(`http://18.61.173.75:4000/users/${user.email}`)
+    fetch(`https://thunderbolt-server.onrender.com/users/${user.email}`)
       .then((response) => response.text())
       .then((data) => setAvatarLink(data));
   }, []);

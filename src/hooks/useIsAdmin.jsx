@@ -4,7 +4,7 @@ export default function useIsAdmin(email) {
   const [adminLoading, setAdminLoading] = useState(true);
   useEffect(() => {
     if (!email) return;
-    fetch(`http://18.61.173.75:4000/isAdmin/${email}`)
+    fetch(`https://thunderbolt-server.onrender.com/isAdmin/${email}`)
       .then((res) => res.json())
       .then((data) => {
         setIsAdmin(data.isAdmin);

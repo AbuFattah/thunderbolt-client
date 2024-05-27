@@ -5,7 +5,7 @@ const useToken = (user) => {
   useEffect(() => {
     if (!user) return;
 
-    fetch("http://18.61.173.75:4000/users", {
+    fetch("https://thunderbolt-server.onrender.com/users", {
       method: "PUT",
       headers: {
         "content-type": "application/json",

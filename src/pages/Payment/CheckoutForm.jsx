@@ -19,7 +19,7 @@ const CheckoutForm = ({ order }) => {
   console.log(order);
   useEffect(() => {
     if (!order.price) return;
-    fetch(`http://18.61.173.75:4000/create-payment-intent`, {
+    fetch(`https://thunderbolt-server.onrender.com/create-payment-intent`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -84,16 +84,19 @@ const CheckoutForm = ({ order }) => {
     if (paymentIntent.id) {
       setSuccess("Payment Successfull!");
       setTransactionId(paymentIntent.id);
-      fetch(`http://18.61.173.75:4000/orders/payment/${order._id}`, {
-        method: "PATCH",
-        headers: {
-          "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-        body: JSON.stringify({
-          transactionId: paymentIntent.id,
-        }),
-      });
+      fetch(
+        `https://thunderbolt-server.onrender.com/orders/payment/${order._id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json",
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+          body: JSON.stringify({
+            transactionId: paymentIntent.id,
+          }),
+        }
+      );
     }
   };
   return (

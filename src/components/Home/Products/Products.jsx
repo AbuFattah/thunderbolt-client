@@ -3,11 +3,13 @@ import { useQuery } from "react-query";
 import Product from "./Product";
 const Products = () => {
   const { data: products } = useQuery("products", () =>
-    fetch("http://18.61.173.75:4000/featuredProducts").then((res) => res.json())
+    fetch("https://thunderbolt-server.onrender.com/featuredProducts").then(
+      (res) => res.json()
+    )
   );
   return (
     <div className="container mx-auto max-w-[1200px]">
-      <h1 className="text-center text-4xl  my-16">PRODUCTS WE MANUFACTURE</h1>
+      <h1 className="text-center text-4xl  my-16">PRODUCTS WE MANUFACTUREs</h1>
       <div className="w-[40px] h-px bg-slate-500 mx-auto"></div>
       <div className="flex justify-center flex-wrap">
         {products?.map((product) => (

@@ -10,7 +10,7 @@ const ManageProducts = () => {
   const [product, setProduct] = useState(null);
   const handleDeleteProduct = async (productId) => {
     const response = await fetch(
-      `http://18.61.173.75:4000/products/${productId}`,
+      `https://thunderbolt-server.onrender.com/products/${productId}`,
       {
         method: "DELETE",
         headers: {
@@ -19,12 +19,15 @@ const ManageProducts = () => {
       }
     );
 
-    const data = await fetch(`http://18.61.173.75:4000/products/${productId}`, {
-      method: "DELETE",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    }).then((response) => response.json());
+    const data = await fetch(
+      `https://thunderbolt-server.onrender.com/products/${productId}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    ).then((response) => response.json());
 
     if (response.status !== 200) {
       toast.error("Product deleted failed");
@@ -36,7 +39,7 @@ const ManageProducts = () => {
   };
 
   useEffect(() => {
-    fetch(`http://18.61.173.75:4000/products`)
+    fetch(`https://thunderbolt-server.onrender.com/products`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, [refetch]);
