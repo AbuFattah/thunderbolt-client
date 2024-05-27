@@ -9,6 +9,15 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
+// const firebaseConfig = {
+//   apiKey: "AIzaSyBJFaha4wOCWae-rLLuogXLbkyPvKns7T8",
+//   authDomain: "thunderbolt-9bce9.firebaseapp.com",
+//   projectId: "thunderbolt-9bce9",
+//   storageBucket: "thunderbolt-9bce9.appspot.com",
+//   messagingSenderId: "298500173482",
+//   appId: "1:298500173482:web:d996b2cd719d9ab5962ad3"
+// };
+
 
 
 // Initialize Firebase
