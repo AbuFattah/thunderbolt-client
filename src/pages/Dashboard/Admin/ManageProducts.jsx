@@ -9,9 +9,23 @@ const ManageProducts = () => {
   const [refetch, setRefetch] = useState(false);
   const [product, setProduct] = useState(null);
   const handleDeleteProduct = async (productId) => {
-    const response = await axiosFetch.delete(
-      `https://thunderbolt-devfattah0.b4a.run/products/${productId}`
+    const response = await fetch(
+      `http://18.61.173.75:4000/products/${productId}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
     );
+
+    const data = await fetch(`http://18.61.173.75:4000/products/${productId}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    }).then((response) => response.json());
+
     if (response.status !== 200) {
       toast.error("Product deleted failed");
       return;
@@ -22,7 +36,7 @@ const ManageProducts = () => {
   };
 
   useEffect(() => {
-    fetch(`https://thunderbolt-devfattah0.b4a.run/products`)
+    fetch(`http://18.61.173.75:4000/products`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, [refetch]);

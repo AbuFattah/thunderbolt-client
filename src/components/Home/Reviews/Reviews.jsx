@@ -5,7 +5,7 @@ import Review from "./Review";
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
-    fetch("https://thunderbolt-devfattah0.b4a.run/reviews")
+    fetch("http://18.61.173.75:4000/reviews")
       .then((response) => response.json())
       .then((data) => setReviews(data));
   }, []);

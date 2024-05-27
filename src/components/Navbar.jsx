@@ -36,8 +36,8 @@ const Navbar = () => {
               >
                 <li>
                   <Link to="/dashboard">Dashboard</Link>
-                  <a href="/#about">About Us</a>
-                  <Link to="/#contact">Contact Us</Link>
+                  {/* <a href="/#about">About Us</a> */}
+                  {/* <Link to="/#contact">Contact Us</Link> */}
                 </li>
               </ul>
             </div>
@@ -50,8 +50,8 @@ const Navbar = () => {
             <ul className="menu menu-horizontal p-0">
               <li>
                 <Link to="/dashboard">Dashboard</Link>
-                <a href="/#about">About Us</a>
-                <Link to="/#contact">Contact Us</Link>
+                {/* <a href="/#about">About Us</a> */}
+                {/* <Link to="/#contact">Contact Us</Link> */}
               </li>
             </ul>
           </div>

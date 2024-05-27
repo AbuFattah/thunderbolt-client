@@ -10,22 +10,19 @@ const ManageUsers = () => {
   // setRefetch(!refetch);
   // toast.success("make admin successfull");
   const handleMakeAdmin = async (email) => {
-    const data = await fetch(
-      `https://thunderbolt-devfattah0.b4a.run/makeAdmin/${email}`,
-      {
-        method: "PATCH",
-        headers: {
-          "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      }
-    ).then((response) => response.json());
+    const data = await fetch(`http://18.61.173.75:4000/makeAdmin/${email}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    }).then((response) => response.json());
 
     setRefetch(!refetch);
     toast.success("make admin successfull");
   };
   useEffect(() => {
-    fetch("https://thunderbolt-devfattah0.b4a.run/users")
+    fetch("http://18.61.173.75:4000/users")
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, [refetch]);

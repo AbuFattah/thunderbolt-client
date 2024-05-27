@@ -20,7 +20,7 @@ const Payment = () => {
     empty: true,
   });
   useEffect(() => {
-    fetch(`https://thunderbolt-devfattah0.b4a.run/singleOrder/${id}`, {
+    fetch(`http://18.61.173.75:4000/singleOrder/${id}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -31,7 +31,7 @@ const Payment = () => {
       .then((data) => setOrder(data));
   }, []);
   // const { data: product, isLoading } = useQuery(["order", id], () =>
-  //   fetch(`https://thunderbolt-devfattah0.b4a.run/orders/${id}`, {
+  //   fetch(`http://18.61.173.75:4000/orders/${id}`, {
   //     method: "GET",
   //     headers: {
   //       "content-type": "application/json",
@@ -61,6 +61,9 @@ const Payment = () => {
       <h1 className=" my-5 font-semibold text-slate-500">
         Only accept through card
       </h1>
+      <p className=" my-5 font-semibold text-slate-500">
+        <b>Test Card: </b>4242424242424242
+      </p>
       <div className="card max-w-md shadow-xl">
         <div className="card-body">
           <Elements stripe={stripePromise}>

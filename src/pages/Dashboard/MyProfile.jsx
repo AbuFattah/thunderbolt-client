@@ -21,7 +21,7 @@ const MyProfile = () => {
       phone: profile?.phone,
       name: profile?.name,
       email: profile?.email,
-      education: profile?.education,
+      AvatarLink: profile?.AvatarLink,
       linkedin: profile?.linkedin,
     },
     validationSchema: Yup.object({
@@ -32,15 +32,26 @@ const MyProfile = () => {
       const { name, address, phone, email } = values;
 
       await updateProfile({ displayName: name });
-      const result = await axiosFetch.put(
-        `https://thunderbolt-devfattah0.b4a.run/updateProfile/${email}`,
-        {
-          ...values,
-        }
-      );
+
+      // const result = await axiosFetch.put(
+      //   `http://18.61.173.75:4000/updateProfile/${email}`,
+      //   {
+      //     ...values,
+      //   }
+      // );
+
+      await fetch(`http://18.61.173.75:4000/updateProfile/${email}`, {
+        method: "PUT",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ ...values }),
+      });
+
       toast.success("updated Profile");
       setEditable(false);
-      // await fetch('https://thunderbolt-devfattah0.b4a.run/updateProfile')
+      // await fetch('http://18.61.173.75:4000/updateProfile')
     },
   });
 
@@ -103,15 +114,15 @@ const MyProfile = () => {
           ></input>
         </div>
         <div>
-          <div className="text-sm font-semibold">Education:</div>
+          <div className="text-sm font-semibold">AvatarLink:</div>
           <input
             className="text-slate-700 border-b-2 p-1 my-1 focus:outline-none "
             disabled={!editable}
             type="text"
-            name="education"
+            name="AvatarLink"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.education}
+            value={formik.values.AvatarLink}
           ></input>
         </div>
         <div>

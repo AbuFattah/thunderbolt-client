@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import useUserProfile from "../../hooks/useUserProfile";
 import axiosFetch from "../../vendors/axios";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../firebase.config";
 const AddReview = () => {
   const [userProfile] = useUserProfile();
+
+  const [user] = useAuthState(auth);
+  const [avatarLink, setAvatarLink] = useState("");
   const formik = useFormik({
     initialValues: {
       rating: "",
@@ -20,28 +25,29 @@ const AddReview = () => {
     }),
     onSubmit: async (values, { resetForm }) => {
       const { description, rating } = values;
-      const data = await fetch(
-        "https://thunderbolt-devfattah0.b4a.run/reviews/",
-        {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-          body: JSON.stringify({
-            name: userProfile?.name,
-            image:
-              userProfile?.image ||
-              "https://api.lorem.space/image/face?hash=3174",
-            description,
-            rating,
-          }),
-        }
-      ).then((res) => res.json());
+      const data = await fetch("http://18.61.173.75:4000/reviews/", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+        body: JSON.stringify({
+          name: userProfile?.name,
+          image: avatarLink,
+          description,
+          rating,
+        }),
+      }).then((res) => res.json());
       resetForm();
       toast.success("added review successfully");
     },
   });
+
+  useEffect(() => {
+    fetch(`http://18.61.173.75:4000/users/${user.email}`)
+      .then((response) => response.text())
+      .then((data) => setAvatarLink(data));
+  }, []);
   return (
     <div>
       <h1 className="text-3xl font-semibold mb-5 uppercase p-3 border-l-4">

@@ -15,9 +15,17 @@ const ManageOrders = () => {
     const order = orders.find((order) => order._id === orderId);
     if (order.paid) return;
 
-    const response = await axiosFetch.delete(
-      `https://thunderbolt-devfattah0.b4a.run/orders/${orderId}`
-    );
+    // const response = await axiosFetch.delete(
+    //   `http://18.61.173.75:4000/orders/${orderId}`
+    // );
+
+    await fetch(`http://18.61.173.75:4000/orders/${orderId}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        "content-type": "application/json",
+      },
+    });
 
     // if (response.statusText !== "OK") {
     //   toast.error("Product deleted failed");
@@ -29,10 +37,13 @@ const ManageOrders = () => {
   };
   const handleShippedStatus = async (orderId) => {
     // UPDATING STATUS TO SHIPPED
-    const res = await axiosFetch.patch(
-      `https://thunderbolt-devfattah0.b4a.run/orders/${orderId}`
-    );
-    if (res.status !== 200) {
+    const res = await fetch(`http://18.61.173.75:4000/orders/${orderId}`, {
+      method: "PATCH",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    });
+    if (!res.ok) {
       toast.error("Product Shipment failed");
       return;
     }
@@ -41,9 +52,21 @@ const ManageOrders = () => {
   };
 
   useEffect(() => {
-    axiosFetch
-      .get(`https://thunderbolt-devfattah0.b4a.run/orders`)
-      .then((res) => setOrders(res.data));
+    console.log(
+      "33333333333333333333333333333333333333333333333333333333333333333"
+    );
+    axiosFetch.get(`http://18.61.173.75:4000/orders`).then((res) => {
+      console.log("fsdalkfjlksadjf;lsdakjflakdsfjsladkfjsdlakfjsladkjf");
+      setOrders(res.data);
+    });
+
+    //   fetch(`http://18.61.173.75:4000/orders`, {
+    //   headers: {
+    //     authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    //   },
+    // })
+    //   .then((response) => response.json())
+    //   .then((res) => setOrders(res.data));
   }, [refetch]);
   return (
     <>

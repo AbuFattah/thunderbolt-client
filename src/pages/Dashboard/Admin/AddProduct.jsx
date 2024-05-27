@@ -19,7 +19,7 @@ const AddProduct = () => {
       minOrder: "",
       price: "",
       category: "",
-      imageURL: "",
+      img: "",
     },
     validationSchema: Yup.object({
       name: Yup.string().required("provide name of product"),
@@ -32,13 +32,22 @@ const AddProduct = () => {
     onSubmit: async (values, { resetForm }) => {
       let { details } = values;
       details = details.split(",");
-      const data = await axiosFetch.post(
-        "https://thunderbolt-devfattah0.b4a.run/products",
-        {
-          ...values,
-          details,
-        }
-      );
+      // const data = await axiosFetch.post(
+      //   "http://18.61.173.75:4000/products",
+      //   {
+      //     ...values,
+      //     details,
+      //   }
+      // );
+
+      await fetch(`http://18.61.173.75:4000/products`, {
+        method: "POST",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ ...values, details }),
+      });
 
       // if (!data.statusText === "success") {
       //   signOut(auth);

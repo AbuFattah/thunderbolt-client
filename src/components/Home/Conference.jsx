@@ -11,7 +11,7 @@ const Conference = () => {
           <a href="https://www.google.com" className="hover:text-blue-500">
             The Advantages of ARM: From Smartphones to Supercomputers and Beyond
           </a>
-          <a className="link text-blue-500" href="https://www.google.com">
+          <a className="link text-blue-500" target="_blank" href="https://www.google.com">
             Learn More
           </a>
         </div>
@@ -20,7 +20,7 @@ const Conference = () => {
           <a href="https://www.google.com" className="hover:text-blue-500">
             The Advantages of ARM: From Smartphones to Supercomputers and Beyond
           </a>
-          <a className="link text-blue-500" href="https://www.google.com">
+          <a className="link text-blue-500" target="_blank" href="https://www.google.com">
             Learn More
           </a>
         </div>

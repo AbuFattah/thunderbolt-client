@@ -3,9 +3,7 @@ import { useQuery } from "react-query";
 import Product from "./Product";
 const Products = () => {
   const { data: products } = useQuery("products", () =>
-    fetch("https://thunderbolt-devfattah0.b4a.run/featuredProducts").then(
-      (res) => res.json()
-    )
+    fetch("http://18.61.173.75:4000/featuredProducts").then((res) => res.json())
   );
   return (
     <div className="container mx-auto max-w-[1200px]">
